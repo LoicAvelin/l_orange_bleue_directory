@@ -27,6 +27,7 @@ header {
 header .header__item--home {
   margin-left: 5rem;
   margin-right: 5rem;
+  font-size: 3rem;
 }
 header .header__item--welcome {
   margin-left: 5rem;

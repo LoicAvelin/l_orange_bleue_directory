@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main__item {
+  background-color: #8BD8BD;
+  border-radius: 1rem;
+  box-shadow: 1rem 1rem 1rem #000000;
+  font-weight: bold;
+  font-size: 3rem;
+  height: 15rem;
+  line-height: 15rem;
+  margin: 8rem 3rem 8rem 3rem;
+  text-align: center;
+}
+.main__item a:link {
+  color: #043565;
+}
+.main__item a:visited {
+  color: #043565;
+}/*# sourceMappingURL=home.css.map */
