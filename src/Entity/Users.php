@@ -42,6 +42,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_active = null;
 
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Structures", inversedBy: "users")]
+    private $structures; 
+
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Permissions", inversedBy: "users")]
+    private $permissions;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -168,6 +174,30 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    public function getStructures()
+    {
+        return $this->structures;
+    }
+
+    public function setStructures($structures): self
+    {
+        $this->structures = $structures;
+
+        return $this;
+    }
+
+    public function getPermissions()
+    {
+        return $this->permissions;
+    }
+
+    public function setPermissions($permissions): self
+    {
+        $this->permissions = $permissions;
 
         return $this;
     }

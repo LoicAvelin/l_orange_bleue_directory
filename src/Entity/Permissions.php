@@ -23,6 +23,12 @@ class Permissions
     #[ORM\Column]
     private ?bool $is_active = null;
 
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Users", mappedBy: "permissions")]
+    private $users;
+
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Structures", mappedBy: "permissions")]
+    private $structures; 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +66,30 @@ class Permissions
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function setUsers($users): self
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    public function getStructures()
+    {
+        return $this->structures;
+    }
+
+    public function setStructures($structures): self
+    {
+        $this->structures = $structures;
 
         return $this;
     }
