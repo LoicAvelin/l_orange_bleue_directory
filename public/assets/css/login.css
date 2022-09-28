@@ -5,13 +5,13 @@ body {
 
 form {
   background-color: #8BD8BD;
-  border-radius: 1em;
+  border-radius: 1rem;
   box-shadow: 1rem 1rem 1rem #000000;
   color: #043565;
-  font-size: 1.8rem;
+  font-size: 1rem;
   font-weight: bold;
-  margin: 5rem;
-  padding: 1em;
+  margin: 2rem 1rem 0rem 1rem;
+  padding: 1rem;
 }
 form div {
   margin-top: 1rem;
@@ -23,15 +23,14 @@ label {
 }
 
 input, textarea {
-  font: 1.8rem sans-serif;
-  width: 20rem;
+  font: 1rem sans-serif;
   box-sizing: border-box;
-  border: 1px solid #000000;
+  border: 0.1rem solid #000000;
 }
 
 .form__input--button {
   position: relative;
-  left: 35rem;
+  left: 13rem;
 }
 .form__input--button button {
   background-color: #ffaf1b;
@@ -39,7 +38,7 @@ input, textarea {
   border-radius: 1rem;
   box-shadow: 0.5rem 0.5rem 0.5rem #000000;
   color: #043565;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   padding: 0.6rem;
 }/*# sourceMappingURL=login.css.map */

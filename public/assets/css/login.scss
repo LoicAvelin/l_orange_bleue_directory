@@ -7,13 +7,13 @@ $four-color: #000000;
 
 form {
   background-color: $third-color;
-  border-radius: 1em;
+  border-radius: 1rem;
   box-shadow: 1rem 1rem 1rem $four-color;
   color: $first-color;
-  font-size: 1.8rem;
+  font-size: 1rem;
   font-weight: bold;
-  margin: 5rem;
-  padding: 1em;
+  margin: 2rem 1rem 0rem 1rem;
+  padding: 1rem;
 
   div {
     margin-top: 1rem;
@@ -26,15 +26,14 @@ label {
 }
 
 input, textarea {
-  font: 1.8rem sans-serif;
-  width: 20rem;
+  font: 1rem sans-serif;
   box-sizing: border-box;
-  border: 1px solid $four-color;
+  border: 0.1rem solid $four-color;
 }
 
 .form__input--button {
   position: relative;
-  left: 35rem;
+  left: 13rem;
 
   button {
     background-color: $second-color;
@@ -42,7 +41,7 @@ input, textarea {
     border-radius: 1rem;
     box-shadow: 0.5rem 0.5rem 0.5rem $four-color;
     color: $first-color;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     padding: 0.6rem;
   }
