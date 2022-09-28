@@ -1,0 +1,36 @@
+@use 'reset';
+
+$first-color: #043565;
+$second-color: #ffaf1b;
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  color: $second-color;
+}
+
+a:link {
+  color: $second-color;
+  text-decoration: none;
+}
+
+a:visited {
+  color: $second-color;
+}
+
+header {
+  align-items: center;
+  background-color: $first-color;
+  display: flex;
+  font-size: 2rem;
+  height: 15rem;
+
+  .header__item--home {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+
+  .header__item--welcome {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+}

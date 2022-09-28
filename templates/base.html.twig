@@ -24,6 +24,11 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- END: Link tag for the favicon --> 
+    <!-- START: Link tag for the font google Noto sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- START: Link tag for the font google Noto sans -->
     <!-- Link tag for the stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     {% block stylesheets %}{% endblock %}
@@ -33,10 +38,10 @@
 	</head>
 	<body>
     <header>
-      <div>
+      <div class="header__item--home">
         <a href="/">Accueil</a>
       </div>
-      <div>
+      <div class="header__item--welcome">
         <h1>{% block h1 %}Bienvenue{% endblock %}</h1>
       </div>
     </header>
