@@ -22,18 +22,15 @@ a:visited {
 header {
   align-items: center;
   background-color: $first-color;
-  display: flex;
-  font-size: 2rem;
-  height: 15rem;
+  font-size: 1rem;
+  height: 13rem;
 
   .header__item--home {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 3rem;
+    padding: 2rem;
+    font-size: 1.5rem;
   }
 
   .header__item--welcome {
-    margin-left: 5rem;
-    margin-right: 5rem;
+    text-align: center;
   }
 }

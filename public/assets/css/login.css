@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  background-color: #8BD8BD;
+  border-radius: 1em;
+  box-shadow: 1rem 1rem 1rem #000000;
+  color: #043565;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 5rem;
+  padding: 1em;
+}
+form div {
+  margin-top: 1rem;
+}
+
+label {
+  display: inline-block;
+  text-align: right;
+}
+
+input, textarea {
+  font: 1.8rem sans-serif;
+  width: 20rem;
+  box-sizing: border-box;
+  border: 1px solid #000000;
+}
+
+.form__input--button {
+  position: relative;
+  left: 35rem;
+}
+.form__input--button button {
+  background-color: #ffaf1b;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0.5rem 0.5rem 0.5rem #000000;
+  color: #043565;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.6rem;
+}/*# sourceMappingURL=login.css.map */

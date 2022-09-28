@@ -7,12 +7,10 @@ body {
   background-color: #8BD8BD;
   border-radius: 1rem;
   box-shadow: 1rem 1rem 1rem #000000;
-  font-weight: bold;
-  font-size: 3rem;
-  height: 15rem;
-  line-height: 15rem;
-  margin: 8rem 3rem 8rem 3rem;
+  font-size: 1rem;
   text-align: center;
+  margin: 3rem 1rem 3rem 1rem;
+  padding: 2rem 1rem 2rem 1rem;
 }
 .main__item a:link {
   color: #043565;
