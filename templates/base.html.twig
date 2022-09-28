@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}'orange bleue{% endblock %}</title>
+		<!-- Meta tag for the responsive -->
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <!-- START: Link tag for the favicon --> 
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/icons/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/images/icons/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/images/icons/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/icons/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/images/icons/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/images/icons/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/images/icons/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/images/icons/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/icons/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('assets/images/icons/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/icons/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/icons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/images/icons/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- END: Link tag for the favicon --> 
+    <!-- Link tag for the stylesheet -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    {% block stylesheets %}{% endblock %}
+    <!-- Link tag for the javascripts. With the attribute defer, the script is downloaded in parallel to parsing the page, and executed after the page has finished parsing  -->
+    <script src="{{ asset('assets/js/script.js') }}" defer></script>
+    {% block javascripts %}{% endblock %}
+	</head>
+	<body>
+    <header>
+      <div>
+        <a href="/">Accueil</a>
+      </div>
+      <div>
+        <h1>{% block h1 %}Bienvenue{% endblock %}</h1>
+      </div>
+    </header>
+		{% block body %}{% endblock %}
+	</body>
+	</html>
