@@ -30,9 +30,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private array $role = [];
-
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $phone_number = null;
 
