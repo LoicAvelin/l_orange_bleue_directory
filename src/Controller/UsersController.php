@@ -21,11 +21,10 @@ class UsersController extends AbstractController
 
     $form->handleRequest($request);
     if ($form->isSubmitted() && $form->isValid()) {
-      dump($users);
-      // $entityManager = $doctrine->getManager();
+      $entityManager = $doctrine->getManager();
 
-      // $entityManager->persist($users);
-      // $entityManager->flush();
+      $entityManager->persist($users);
+      $entityManager->flush();
     }
 
     return $this->render('admin/inscription.html.twig', [

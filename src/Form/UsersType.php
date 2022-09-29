@@ -28,9 +28,9 @@ class UsersType extends AbstractType
             'Responsable d\'une salle de sport' => 'ROLE_MANAGER',
             'Partenaire' => 'ROLE_PARTNER',
             'Equipe technique' => 'ROLE_ADMIN'
-          ],
-          'label' => ': Type de compte',
-        ] 
+          ]
+        ] ,
+        'label' => 'Type de compte'
       ])
       ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
       ->add('name', TextType::class, ['label' => 'Nom'])
