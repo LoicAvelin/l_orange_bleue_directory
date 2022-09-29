@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PagesController extends AbstractController
+class AdminController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function home(): Response
+    #[Route('/admin/home', name: 'app_home')]
+    public function adminHome(): Response
     {
-        return $this->render('pages/home.html.twig');
+        return $this->render('admin/home.html.twig');
     }
 }

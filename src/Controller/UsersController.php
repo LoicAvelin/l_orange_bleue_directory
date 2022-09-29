@@ -8,23 +8,29 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends AbstractController
 {
   #[Route("/admin/inscription")]
-  public function new(Request $request, ManagerRegistry $doctrine): Response
+  public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
   {
-    $users = new Users();
+    $user = new Users();
 
-    $form = $this->createForm(UsersType::class, $users);
+    $form = $this->createForm(UsersType::class, $user);
 
     $form->handleRequest($request);
+
     if ($form->isSubmitted() && $form->isValid()) {
+      // encode the plain password
+      $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('password')->getData()));
       $entityManager = $doctrine->getManager();
 
-      $entityManager->persist($users);
+      $entityManager->persist($user);
       $entityManager->flush();
+
+      return $this->redirectToRoute('app_home');
     }
 
     return $this->render('admin/inscription.html.twig', [

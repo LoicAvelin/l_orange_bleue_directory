@@ -22,8 +22,8 @@ security:
             custom_authenticator: App\Security\LoginFormAuthenticator
             entry_point: App\Security\LoginFormAuthenticator
             form_login:
-                #username_parameter: email
-                #password_parameter: password
+                username_parameter: email
+                password_parameter: password
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
@@ -43,7 +43,7 @@ security:
     access_control:
         - { path: ^/manager, roles: ROLE_MANAGER }
         - { path: ^/partner, roles: ROLE_PARTNER }
-        #- { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
 
 when@test:
     security:
