@@ -29,6 +29,11 @@ class Permissions
     #[ORM\ManyToMany(targetEntity: "App\Entity\Structures", mappedBy: "permissions")]
     private $structures; 
 
+    public function __construct()
+    {
+        $this->is_active = true;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
