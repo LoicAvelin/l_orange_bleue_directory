@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -35,9 +34,9 @@ class UsersType extends AbstractType
       ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
       ->add('name', TextType::class, ['label' => 'Nom'])
       ->add('phone_number', TelType::class, ['label' => 'Numéro de téléphone'])
-      ->add('created_at', DateTimeType::class, ['label' => 'Date de création'])
       ->add('is_active', CheckboxType::class, [
         'label' => 'Souhaitez-vous activer le compte ? (cocher la case pour l\'activer)',
+        'required' => false
       ]);
   }
 

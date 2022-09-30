@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -12,8 +13,12 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('app_home');
+        if ($this->getUser() && $this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_admin');
+        } elseif ($this->getUser() && $this->container->get('security.authorization_checker')->isGranted('ROLE_PARTNER')) {
+            return $this->redirectToRoute('app_partner');
+        } elseif ($this->getUser() && $this->container->get('security.authorization_checker')->isGranted('ROLE_MANAGER')) {
+            return $this->redirectToRoute('app_manager');
         }
 
         // get the login error if there is one

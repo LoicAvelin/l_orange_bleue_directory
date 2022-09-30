@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}- Accueil partenaire{% endblock %}
+{% block stylesheets %} 
+  <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}"> 
+{% endblock %}
+
+{% block h1 %}Bienvenue{% endblock %}
+
+{% block main %}
+  <div class="main__item"><a href="/partner/info">Informations</a></div>
+  <div class="main__item"><a href="/partner/permissions">Permissions</a></div>
+  <div class="main__item"><a href="/partner/structures">Structures</a></div>
+{% endblock %}

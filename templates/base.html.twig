@@ -38,13 +38,17 @@
 	</head>
 	<body>
     <header>
+    {% block header %}
       <div class="header__item--home">
-        <a href="/">Accueil</a>
+        {% block home %}{% endblock %}
       </div>
       <div class="header__item--welcome">
-        <h1>{% block h1 %}Bienvenue{% endblock %}</h1>
+        <h1>{% block h1 %}Connexion{% endblock %}</h1>
       </div>
+    {% endblock %}
     </header>
-		{% block body %}{% endblock %}
+    <main>
+		{% block main %}{% endblock %}
+    </main>
 	</body>
 	</html>

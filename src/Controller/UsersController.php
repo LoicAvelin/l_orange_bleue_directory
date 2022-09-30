@@ -13,27 +13,30 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends AbstractController
 {
-  #[Route("/admin/inscription")]
+  #[Route("/admin/register/user")]
   public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
   {
     $user = new Users();
-
     $form = $this->createForm(UsersType::class, $user);
-
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
       // encode the plain password
-      $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('password')->getData()));
+      $user->setPassword(
+        $userPasswordHasher->hashPassword(
+          $user, 
+          $form->get('password')->getData()
+        )
+      );
       $entityManager = $doctrine->getManager();
 
       $entityManager->persist($user);
       $entityManager->flush();
 
-      return $this->redirectToRoute('app_home');
+      return $this->redirectToRoute('app_admin');
     }
 
-    return $this->render('admin/inscription.html.twig', [
+    return $this->render('admin/registerUser.html.twig', [
       "form" => $form->createView()
     ]);
   }

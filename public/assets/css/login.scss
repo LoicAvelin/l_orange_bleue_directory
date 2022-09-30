@@ -26,14 +26,14 @@ label {
 }
 
 input, textarea {
-  font: 1rem sans-serif;
-  box-sizing: border-box;
   border: 0.1rem solid $four-color;
+  box-sizing: border-box;
+  font: 1rem sans-serif;
 }
 
 .form__input--button {
+  left: 12rem;
   position: relative;
-  left: 13rem;
 
   button {
     background-color: $second-color;
