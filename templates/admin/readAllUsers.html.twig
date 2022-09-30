@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Utilisateurs{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/table.css') }}"> {% endblock %}
+
+{% block home %}<a href="/admin">Accueil</a>{% endblock %}
+{% block h1 %}Utilisateurs{% endblock %}
+
+{% block main %}
+  <table>
+    <thead>
+      <tr>
+        <th colspan="6">Tous les utilisateurs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Type de compte</th>
+        <th>Numéro de téléphone</th>
+        <th>Date de création</th>
+        <th>Actif</th>
+      </tr>
+        {% for user in users %}
+          <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              {% if user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}Administrateur
+              {% elseif user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %}Partenaire
+              {% else %}Manager
+              {% endif %}
+              </td>
+            <td>{{ user.phoneNumber }}</td>
+            <td>{{ user.createdAt | date("d-m-Y") }}</td>
+            <td>{% if user.isActive == 1 %}Oui{% else %}Non{% endif %}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
