@@ -24,8 +24,8 @@ header {
   height: 13rem;
 }
 header .header__item--home {
-  padding: 2rem;
   font-size: 1.5rem;
+  padding: 2rem;
 }
 header .header__item--welcome {
   text-align: center;

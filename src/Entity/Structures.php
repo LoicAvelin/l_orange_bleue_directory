@@ -22,7 +22,7 @@ class Structures
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $phone_number = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]
@@ -33,6 +33,12 @@ class Structures
 
     #[ORM\ManyToMany(targetEntity: "App\Entity\Permissions", inversedBy: "structures")]
     private $permissions;
+
+    public function __construct()
+    {
+        $this->is_active = true;
+        $this->created_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

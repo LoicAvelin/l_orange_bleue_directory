@@ -23,21 +23,18 @@ class UsersType extends AbstractType
       ->add('roles', CollectionType::class, [
         'entry_type' => ChoiceType::class,
         'entry_options' => [
+          'label' => 'Type de compte',
           'choices' => [
             'Responsable d\'une salle de sport' => 'ROLE_MANAGER',
             'Partenaire' => 'ROLE_PARTNER',
             'Equipe technique' => 'ROLE_ADMIN'
           ]
-        ] ,
-        'label' => 'Type de compte'
+        ],
+        
       ])
       ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
       ->add('name', TextType::class, ['label' => 'Nom'])
-      ->add('phone_number', TelType::class, ['label' => 'Numéro de téléphone'])
-      ->add('is_active', CheckboxType::class, [
-        'label' => 'Souhaitez-vous activer le compte ? (cocher la case pour l\'activer)',
-        'required' => false
-      ]);
+      ->add('phone_number', TelType::class, ['label' => 'Numéro de téléphone']);
   }
 
   public function configureOptions(OptionsResolver $resolver)

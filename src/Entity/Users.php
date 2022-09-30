@@ -47,6 +47,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        $this->is_active = true;
         $this->created_at = new \DateTimeImmutable();
     }
 

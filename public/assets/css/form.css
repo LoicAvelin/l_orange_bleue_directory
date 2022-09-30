@@ -11,26 +11,26 @@ form {
   font-size: 1rem;
   font-weight: bold;
   margin: 2rem 1rem 0rem 1rem;
-  padding: 1rem;
+  padding: 2rem;
 }
 form div {
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
 label {
-  display: inline-block;
-  text-align: right;
+  display: block;
 }
 
 input, textarea {
-  font: 1rem sans-serif;
-  box-sizing: border-box;
   border: 0.1rem solid #000000;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  font: 1rem sans-serif;
 }
 
 .form__input--button {
-  position: relative;
-  left: 13rem;
+  left: 12rem;
+  justify-items: end;
 }
 .form__input--button button {
   background-color: #ffaf1b;
@@ -41,4 +41,4 @@ input, textarea {
   font-size: 1rem;
   font-weight: bold;
   padding: 0.6rem;
-}/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=form.css.map */
