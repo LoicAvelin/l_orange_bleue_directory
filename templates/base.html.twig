@@ -31,6 +31,7 @@
     <!-- START: Link tag for the font google Noto sans -->
     <!-- Link tag for the stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
     {% block stylesheets %}{% endblock %}
     <!-- Link tag for the javascripts. With the attribute defer, the script is downloaded in parallel to parsing the page, and executed after the page has finished parsing  -->
     <script src="{{ asset('assets/js/script.js') }}" defer></script>
@@ -38,6 +39,37 @@
 	</head>
 	<body>
     <header>
+{#    {% block header %}
+<div id="root">
+  <div id="topnav" class="topnav">
+    <a id="home_link" class="topnav_link" href="/admin">Accueil</a>
+
+    <!-- Classic Menu -->
+    <nav role="navigation" id="topnav_menu">
+      <a class="topnav_link" href="/about">ABOUT</a>
+      <a class="topnav_link" href="/contact-us">CONTACT</a>
+    </nav>
+
+    <a id="topnav_hamburger_icon" href="#" onclick="showResponsiveMenu()">
+      <!-- Some spans to act as a hamburger -->
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+
+    <!-- Responsive Menu -->
+    <nav role="navigation" id="topnav_responsive_menu">
+      <ul>
+        <li><a href="/admin">Accueil</a></li>
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/contact-us">CONTACT</a></li>
+        <li><a href="/privacy-policy">PRIVACY POLICY</a></li>
+        <li><a href="/terms-and-conditions">TERMS AND CONDITIONS</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+{% endblock %} #}
     {% block header %}
       <div class="header__item--home">
         {% block home %}{% endblock %}

@@ -25,10 +25,10 @@ class PermissionsController extends AbstractController
       $entityManager->persist($permissions);
       $entityManager->flush();
 
-      return $this->redirectToRoute('app_admin');
+      return $this->redirectToRoute("app_admin");
     }
 
-    return $this->render('admin/registerPermission.html.twig', [
+    return $this->render("admin/registerPermission.html.twig", [
       "form" => $form->createView()
     ]);
   }

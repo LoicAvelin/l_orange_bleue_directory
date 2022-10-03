@@ -22,7 +22,7 @@ class Structures
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $phone_number = null;
 
-    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[ORM\Column(options: ["default" => "CURRENT_TIMESTAMP"])]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]

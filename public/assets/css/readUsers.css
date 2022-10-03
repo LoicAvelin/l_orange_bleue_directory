@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main div {
+  background-color: #8BD8BD;
+  border-radius: 1rem;
+  box-shadow: 1rem 1rem 1rem #000000;
+  color: #043565;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 2rem 1rem 0rem 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+main div div {
+  background-color: #043565;
+}
+main div .main__div--button:hover {
+  color: #ffffff;
+}/*# sourceMappingURL=readUsers.css.map */

@@ -14,15 +14,15 @@ class StructuresType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-      ->add('name', TextType::class, ['label' => 'Nom'])
-      ->add('address', TextType::class, ['label' => 'Adresse postale'])
-      ->add('phone_number', TelType::class, ['label' => 'Numéro de téléphone']);
+      ->add("name", TextType::class, ["label" => "Nom"])
+      ->add("address", TextType::class, ["label" => "Adresse postale"])
+      ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"]);
   }
 
   public function configureOptions(OptionsResolver $resolver)
   {
     $resolver->setDefaults([
-      'data_class' => Structures::class,
+      "data_class" => Structures::class,
     ]);
   }
 }

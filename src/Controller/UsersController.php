@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends AbstractController
 {
-  #[Route("/admin/register/user")]
+  #[Route("/admin/register/user", name: "admin_home")]
   public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
   {
     $user = new Users();
@@ -25,7 +25,7 @@ class UsersController extends AbstractController
       $user->setPassword(
         $userPasswordHasher->hashPassword(
           $user, 
-          $form->get('password')->getData()
+          $form->get("password")->getData()
         )
       );
       $entityManager = $doctrine->getManager();
@@ -33,37 +33,57 @@ class UsersController extends AbstractController
       $entityManager->persist($user);
       $entityManager->flush();
 
-      return $this->redirectToRoute('app_admin');
+      return $this->redirectToRoute("app_admin");
     }
 
-    return $this->render('admin/registerUser.html.twig', [
+    return $this->render("admin/registerUser.html.twig", [
       "form" => $form->createView()
     ]);
   }
 
-  #[Route("/admin/edit/user/{id}")]
+  #[Route("/admin/edit/user/{id}", name: "edit_user")]
   public function edit(Request $request, ManagerRegistry $doctrine, Users $user): Response
   {
-    $form = $this->createForm(Users::class, $user);
+    $form = $this->createForm(UsersType::class, $user);
 
     $form->handleRequest($request);
     if ($form->isSubmitted() && $form->isValid()) {
       $doctrine->getManager()->flush();
     }
 
-    return $this->render('admin/registerUser.html.twig', [
+    return $this->render("admin/registerUser.html.twig", [
       "form" => $form->createView()
     ]);
   }
 
-  #[Route("/admin/delete/user/{id}")]
+  #[Route("/admin/delete/user/{id}", name: "delete_user")]
   public function delete(ManagerRegistry $doctrine, Users $user): Response
   {
     $entityManager = $doctrine->getManager();
     $entityManager->remove($user);
     $entityManager->flush();
 
-    return $this->redirectToRoute("/admin");
+    return $this->redirectToRoute("app_admin");
+  }
+
+  #[Route("/admin/disable/user/{id}", name: "disable_user")]
+  public function disable(ManagerRegistry $doctrine, Users $user):Response
+  {
+    $entityManager = $doctrine->getManager();
+    $user->setIsActive(false);
+    $entityManager->flush($user);
+
+    return $this->redirectToRoute("app_admin");
+  }
+
+  #[Route("/admin/enable/user/{id}", name: "enable_user")]
+  public function enable(ManagerRegistry $doctrine, Users $user):Response
+  {
+    $entityManager = $doctrine->getManager();
+    $user->setIsActive(true);
+    $entityManager->flush($user);
+
+    return $this->redirectToRoute("app_admin");
   }
 
   #[Route("/admin/user/read-all")]
@@ -71,7 +91,7 @@ class UsersController extends AbstractController
   {
     $repository = $doctrine->getRepository(Users::class);
     $users = $repository->findAll();
-    return $this->render('admin/readAllUsers.html.twig', [
+    return $this->render("admin/readAllUsers.html.twig", [
       "users" => $users
     ]);
   }

@@ -25,10 +25,10 @@ class StructuresController extends AbstractController
       $entityManager->persist($structures);
       $entityManager->flush();
 
-      return $this->redirectToRoute('app_admin');
+      return $this->redirectToRoute("app_admin");
     }
 
-    return $this->render('admin/registerStructure.html.twig', [
+    return $this->render("admin/registerStructure.html.twig", [
       "form" => $form->createView()
     ]);
   }
