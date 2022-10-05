@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,14 +40,16 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Structures", inversedBy: "users")]
+    #[ORM\ManyToMany(targetEntity: Structures::class)]
     private $structures; 
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Permissions", inversedBy: "users")]
+    #[ORM\ManyToMany(targetEntity: Permissions::class)]
     private $permissions;
 
     public function __construct()
     {
+        $this->structures = new ArrayCollection();
+        $this->permissions = new ArrayCollection();
         $this->is_active = true;
         $this->created_at = new \DateTimeImmutable();
     }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\StructuresRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StructuresRepository::class)]
@@ -28,14 +29,16 @@ class Structures
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Users", mappedBy: "structures")]
+    #[ORM\ManyToMany(targetEntity: Users::class)]
     private $users;
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Permissions", inversedBy: "structures")]
+    #[ORM\ManyToMany(targetEntity: Permissions::class)]
     private $permissions;
 
     public function __construct()
     {
+        $this->users = new ArrayCollection();
+        $this->permissions = new ArrayCollection();
         $this->is_active = true;
         $this->created_at = new \DateTimeImmutable();
     }
@@ -127,5 +130,10 @@ class Structures
         $this->permissions = $permissions;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?: "";
     }
 }

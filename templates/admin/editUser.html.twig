@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Modification utilisateur{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/form.css') }}"> {% endblock %}
+
+{% block home %}<a href="/admin">Accueil</a>{% endblock %}
+{% block h1 %}Modification utilisateur{% endblock %}
+
+{% block main %}
+  {{ form_start(form) }}
+  {{ form_rest(form) }}
+    <div class="form__input--button">
+      <button type="submit">Valider</button>
+    </div>
+  {{ form_end(form) }}
+{% endblock %}

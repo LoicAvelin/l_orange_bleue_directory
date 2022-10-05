@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PermissionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,14 +24,16 @@ class Permissions
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Users", mappedBy: "permissions")]
+    #[ORM\ManyToMany(targetEntity: Users::class)]
     private $users;
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Structures", mappedBy: "permissions")]
+    #[ORM\ManyToMany(targetEntity: Structures::class)]
     private $structures; 
 
     public function __construct()
     {
+        $this->users = new ArrayCollection();
+        $this->structures = new ArrayCollection();
         $this->is_active = true;
     }
 
@@ -97,5 +100,10 @@ class Permissions
         $this->structures = $structures;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?: "";
     }
 }

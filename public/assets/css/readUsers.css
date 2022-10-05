@@ -16,6 +16,9 @@ main div {
 }
 main div div {
   background-color: #043565;
+  box-shadow: 0.4rem 0.4rem 0.4rem #000000;
+  margin: 1rem 0rem 0rem 1rem;
+  padding: 1rem;
 }
 main div .main__div--button:hover {
   color: #ffffff;

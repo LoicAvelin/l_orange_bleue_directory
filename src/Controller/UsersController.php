@@ -51,7 +51,7 @@ class UsersController extends AbstractController
       $doctrine->getManager()->flush();
     }
 
-    return $this->render("admin/registerUser.html.twig", [
+    return $this->render("admin/editUser.html.twig", [
       "form" => $form->createView()
     ]);
   }

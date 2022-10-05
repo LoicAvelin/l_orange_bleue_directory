@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Structures{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/readUsers.css') }}"> {% endblock %}
+
+{% block home %}<a href="/admin">Accueil</a>{% endblock %}
+{% block h1 %}Structures{% endblock %}
+
+{% block main %}
+  
+    {% for structure in structures %}
+    <div>
+      <h2>Nom : {{ structure.name }}</h2>
+      <h3>Adresse : {{ structure.address }}</h3>
+      <p>Numéro de téléphone : {{ structure.phoneNumber }}</p>
+      <p>Date de création : {{ structure.createdAt | date("d-m-Y") }}</p>
+      <p>Actif : 
+        {% if structure.isActive == 1 %}Oui{% else %}Non
+        {% endif %}
+      </p>
+      <div>
+        <a href="{{ path('delete_structure', {id : structure.id}) }}" class="main__div--button">Supprimer</a>
+      </div>
+      <div>
+        <a href="{{ path('edit_structure', {id : structure.id}) }}" class="main__div--button">Modifier</a>
+      </div>
+      <div>
+      {% if structure.isActive == 1 %}
+        <a href="{{ path('disable_structure', {id : structure.id}) }}" class="main__div--button">Désactiver</a>
+      {% else %}
+        <a href="{{ path('enable_structure', {id : structure.id}) }}" class="main__div--button">Activer</a>
+      {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  
+{% endblock %}

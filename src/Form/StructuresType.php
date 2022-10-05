@@ -16,7 +16,8 @@ class StructuresType extends AbstractType
     $builder
       ->add("name", TextType::class, ["label" => "Nom"])
       ->add("address", TextType::class, ["label" => "Adresse postale"])
-      ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"]);
+      ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"])
+      ->add("permissions");
   }
 
   public function configureOptions(OptionsResolver $resolver)

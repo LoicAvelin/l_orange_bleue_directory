@@ -20,6 +20,9 @@ main {
 
     div {
       background-color: #043565;
+      box-shadow: 0.4rem 0.4rem 0.4rem $four-color;
+      margin: 1rem 0rem 0rem 1rem;
+      padding: 1rem;
     }
     .main__div--button:hover {
       color: $fifth-color;
