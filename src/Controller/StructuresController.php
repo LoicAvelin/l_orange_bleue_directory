@@ -28,7 +28,7 @@ class StructuresController extends AbstractController
       return $this->redirectToRoute("app_admin");
     }
 
-    return $this->render("admin/registerStructure.html.twig", [
+    return $this->render("admin/structures/registerStructure.html.twig", [
       "form" => $form->createView()
     ]);
   }
@@ -43,7 +43,7 @@ class StructuresController extends AbstractController
       $doctrine->getManager()->flush();
     }
 
-    return $this->render("admin/editStructure.html.twig", [
+    return $this->render("admin/structures/editStructure.html.twig", [
       "form" => $form->createView()
     ]);
   }
@@ -65,7 +65,7 @@ class StructuresController extends AbstractController
     $structure->setIsActive(false);
     $entityManager->flush($structure);
 
-    return $this->redirectToRoute("app_admin");
+    return $this->redirectToRoute("read_all_structure");
   }
 
   #[Route("/admin/enable/structure/{id}", name: "enable_structure")]
@@ -75,15 +75,15 @@ class StructuresController extends AbstractController
     $structure->setIsActive(true);
     $entityManager->flush($structure);
 
-    return $this->redirectToRoute("app_admin");
+    return $this->redirectToRoute("read_all_structure");
   }
 
-  #[Route("/admin/structure/read-all")]
+  #[Route("/admin/structure/read-all", name: "read_all_structure")]
   public function readAll(ManagerRegistry $doctrine): Response
   {
     $repository = $doctrine->getRepository(Structures::class);
     $structures = $repository->findAll();
-    return $this->render("admin/readAllStructures.html.twig", [
+    return $this->render("admin/structures/readAllStructures.html.twig", [
       "structures" => $structures
     ]);
   }

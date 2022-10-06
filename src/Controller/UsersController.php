@@ -36,7 +36,7 @@ class UsersController extends AbstractController
       return $this->redirectToRoute("app_admin");
     }
 
-    return $this->render("admin/registerUser.html.twig", [
+    return $this->render("admin/users/registerUser.html.twig", [
       "form" => $form->createView()
     ]);
   }
@@ -51,7 +51,7 @@ class UsersController extends AbstractController
       $doctrine->getManager()->flush();
     }
 
-    return $this->render("admin/editUser.html.twig", [
+    return $this->render("admin/users/editUser.html.twig", [
       "form" => $form->createView()
     ]);
   }
@@ -73,7 +73,7 @@ class UsersController extends AbstractController
     $user->setIsActive(false);
     $entityManager->flush($user);
 
-    return $this->redirectToRoute("app_admin");
+    return $this->redirectToRoute("read_all_user");
   }
 
   #[Route("/admin/enable/user/{id}", name: "enable_user")]
@@ -83,15 +83,15 @@ class UsersController extends AbstractController
     $user->setIsActive(true);
     $entityManager->flush($user);
 
-    return $this->redirectToRoute("app_admin");
+    return $this->redirectToRoute("read_all_user");
   }
 
-  #[Route("/admin/user/read-all")]
+  #[Route("/admin/user/read-all", name: "read_all_user")]
   public function readAll(ManagerRegistry $doctrine): Response
   {
     $repository = $doctrine->getRepository(Users::class);
     $users = $repository->findAll();
-    return $this->render("admin/readAllUsers.html.twig", [
+    return $this->render("admin//users/readAllUsers.html.twig", [
       "users" => $users
     ]);
   }

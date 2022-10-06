@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}- Structures partenaire{% endblock %}
+{% block title %}{{ parent() }}- Structure manager{% endblock %}
 {% block stylesheets %} 
   <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> 
 {% endblock %}
 
 {% block home %}<a href="/partner">Accueil</a>{% endblock %}
-{% block h1 %}Structures{% endblock %}
+{% block h1 %}Structure{% endblock %}
 
 {% block main %}
-{% for structure in structures %}
   <div>
     <h2>Nom : {{ structure.name }}</h2>
     <h3>Adresse : {{ structure.address }}</h3>
@@ -20,15 +19,4 @@
       {% endif %}
     </p>
   </div>
-{% for permission in permissions %}
-  <div>
-    <h2>Nom : {{ permission.name }}</h2>
-    <p>Description : {{ permission.description }}</p>
-    <p>Actif : 
-      {% if permission.isActive == 1 %}Oui{% else %}Non
-      {% endif %}
-    </p>
-  </div>
-{% endfor %}
-{% endfor %}
 {% endblock %}

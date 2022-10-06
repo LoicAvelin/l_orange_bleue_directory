@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Structures;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,7 +19,10 @@ class StructuresType extends AbstractType
       ->add("name", TextType::class, ["label" => "Nom"])
       ->add("address", TextType::class, ["label" => "Adresse postale"])
       ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"])
-      ->add("permissions");
+      ->add("permissions")
+      ->add("Valider", SubmitType::class, [
+        "attr" => ["class" => "form__input--button"]
+      ]);
   }
 
   public function configureOptions(OptionsResolver $resolver)

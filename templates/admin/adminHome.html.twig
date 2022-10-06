@@ -5,13 +5,27 @@
 {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
 {% endblock %}
-
+{% block javascripts %} <script src=" {{ asset('assets/js/adminHome.js')  }} " defer></script> {% endblock %}
+{% block h1 %}Accueil{% endblock %}
 {% block main %}
-  <div class="main__item"><a href="/admin/register/user">Créer un utilisateur</a></div>
-  <div class="main__item"><a href="/admin/register/structure">Créer une structure</a></div>
-  <div class="main__item"><a href="/admin/register/permission">Créer une permission</a></div>
-  <div class="main__item"><a href="/admin/user/read-all">Gérer les utilisateurs</a></div>
-  <div class="main__item"><a href="/admin/structure/read-all">Gérer les partenaires/structures</a></div>
-  <div class="main__item"><a href="#">Gérer les permissions</a></div>
+
+  <div class="main__item--category">
+    <h2 id="togg1">Création</h2>
+    <div id="d1">
+      <div class="main__item"><a href="/admin/register/user">Créer un utilisateur</a></div>
+      <div class="main__item"><a href="/admin/register/structure">Créer une structure</a></div>
+      <div class="main__item"><a href="/admin/register/permission">Créer une permission</a></div>
+    </div>
+  </div>
+
+  <div class="main__item--category">
+    <h2 id="togg2">Gestion</h2>
+    <div id="d2">
+      <div class="main__item"><a href="/admin/user/read-all">Gérer les utilisateurs</a></div>
+      <div class="main__item"><a href="/admin/structure/read-all">Gérer les partenaires/structures</a></div>
+      <div class="main__item"><a href="/admin/permission/read-all">Gérer les permissions</a></div>
+    </div>
+  </div>
+
 {% endblock %}
 

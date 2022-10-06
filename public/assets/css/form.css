@@ -1,8 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-}
-
 form {
   background-color: #8BD8BD;
   border-radius: 1rem;
@@ -10,29 +5,24 @@ form {
   color: #043565;
   font-size: 1rem;
   font-weight: bold;
-  margin: 2rem 1rem 0rem 1rem;
+  margin: 2rem 1.6rem 2rem 1rem;
   padding: 2rem;
-}
-form div {
-  margin: 1rem;
 }
 
 label {
   display: block;
+  padding: 0.5rem;
 }
 
-input, textarea {
+input, textarea, select {
   border: 0.1rem solid #000000;
   border-radius: 1rem;
   box-sizing: border-box;
-  font: 1rem sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem;
 }
 
 .form__input--button {
-  left: 12rem;
-  justify-items: end;
-}
-.form__input--button button {
   background-color: #ffaf1b;
   border: none;
   border-radius: 1rem;
@@ -40,5 +30,6 @@ input, textarea {
   color: #043565;
   font-size: 1rem;
   font-weight: bold;
+  margin: 0.4rem;
   padding: 0.6rem;
 }/*# sourceMappingURL=form.css.map */

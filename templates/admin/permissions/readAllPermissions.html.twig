@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Permissions{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> {% endblock %}
+
+{% block home %}<a href="/admin">Accueil</a>{% endblock %}
+{% block h1 %}Permissions{% endblock %}
+
+{% block main %}
+  
+    {% for permission in permissions %}
+    <div>
+      <h2>Nom : {{ permission.name }}</h2>
+      <p>Description : {{ permission.description }}</p>
+      <p>Actif : 
+        {% if permission.isActive == 1 %}Oui{% else %}Non
+        {% endif %}
+      </p>
+      <div>
+        <a href="{{ path('delete_permission', {id : permission.id}) }}" class="main__div--button">Supprimer</a>
+      </div>
+      <div>
+        <a href="{{ path('edit_permission', {id : permission.id}) }}" class="main__div--button">Modifier</a>
+      </div>
+      <div>
+      {% if permission.isActive == 1 %}
+        <a href="{{ path('disable_permission', {id : permission.id}) }}" class="main__div--button">Désactiver</a>
+      {% else %}
+        <a href="{{ path('enable_permission', {id : permission.id}) }}" class="main__div--button">Activer</a>
+      {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  
+{% endblock %}

@@ -1,19 +1,17 @@
 @charset "UTF-8";
 /* ******************** NAV BAR ******************** */
 .topnav {
-  background-color: #333;
+  background-color: #043565;
   display: flex;
   align-items: center;
   width: 100%;
 }
-
-.topnav_link {
+.topnav .topnav_link {
   color: white;
   padding: 12px;
   text-decoration: none;
 }
-
-.topnav_link:hover {
+.topnav .topnav_link:hover {
   color: #0078b4;
 }
 
@@ -124,7 +122,7 @@
   }
   /* change color when opening the menu */
   #topnav_hamburger_icon.open span {
-    background: #333;
+    background: #043565;
   }
   /* the first span rotates 45° \ */
   #topnav_hamburger_icon.open span:nth-child(1) {
