@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StructuresRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StructuresRepository::class)]
@@ -29,18 +30,19 @@ class Structures
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(targetEntity: Users::class)]
+    #[ORM\ManyToMany(mappedBy: "users", targetEntity: Users::class)]
+    #[ORM\JoinTable("structures_users")]
     private $users;
 
-    #[ORM\ManyToMany(targetEntity: Permissions::class)]
-    private $permissions;
+    #[ORM\OneToMany(mappedBy: 'structures', targetEntity: PermissionsStructures::class, orphanRemoval: true)]
+    private Collection $permissionsStructures;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->permissions = new ArrayCollection();
         $this->is_active = true;
         $this->created_at = new \DateTimeImmutable();
+        $this->permissionsStructures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,5 +137,35 @@ class Structures
     public function __toString(): string
     {
         return $this->name ?: "";
+    }
+
+    /**
+     * @return Collection<int, PermissionsStructures>
+     */
+    public function getPermissionsStructures(): Collection
+    {
+        return $this->permissionsStructures;
+    }
+
+    public function addPermissionsStructure(PermissionsStructures $permissionsStructure): self
+    {
+        if (!$this->permissionsStructures->contains($permissionsStructure)) {
+            $this->permissionsStructures->add($permissionsStructure);
+            $permissionsStructure->setStructures($this);
+        }
+
+        return $this;
+    }
+
+    public function removePermissionsStructure(PermissionsStructures $permissionsStructure): self
+    {
+        if ($this->permissionsStructures->removeElement($permissionsStructure)) {
+            // set the owning side to null (unless already changed)
+            if ($permissionsStructure->getStructures() === $this) {
+                $permissionsStructure->setStructures(null);
+            }
+        }
+
+        return $this;
     }
 }

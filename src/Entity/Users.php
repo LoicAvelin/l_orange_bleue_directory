@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,24 +37,25 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $phone_number = null;
 
-    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[ORM\Column(options: ["default" => "CURRENT_TIMESTAMP"])]
     private ?\DateTimeImmutable $created_at = null; 
 
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(targetEntity: Structures::class)]
+    #[ORM\ManyToMany(inversedBy: "structures", targetEntity: Structures::class)]
+    #[ORM\JoinTable("structures_users")]
     private $structures; 
 
-    #[ORM\ManyToMany(targetEntity: Permissions::class)]
-    private $permissions;
+    #[ORM\OneToMany(mappedBy: "users", targetEntity: PermissionsUsers::class, orphanRemoval: true)]
+    private Collection $permissionsUsers;
 
     public function __construct()
     {
         $this->structures = new ArrayCollection();
-        $this->permissions = new ArrayCollection();
         $this->is_active = true;
         $this->created_at = new \DateTimeImmutable();
+        $this->permissionsUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,6 +196,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPermissions($permissions): self
     {
         $this->permissions = $permissions;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PermissionsUsers>
+     */
+    public function getPermissionsUsers(): Collection
+    {
+        return $this->permissionsUsers;
+    }
+
+    public function addPermissionsUser(PermissionsUsers $permissionsUser): self
+    {
+        if (!$this->permissionsUsers->contains($permissionsUser)) {
+            $this->permissionsUsers->add($permissionsUser);
+            $permissionsUser->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removePermissionsUser(PermissionsUsers $permissionsUser): self
+    {
+        if ($this->permissionsUsers->removeElement($permissionsUser)) {
+            // set the owning side to null (unless already changed)
+            if ($permissionsUser->getUsers() === $this) {
+                $permissionsUser->setUsers(null);
+            }
+        }
 
         return $this;
     }

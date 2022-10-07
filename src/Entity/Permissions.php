@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PermissionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,17 +25,17 @@ class Permissions
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(targetEntity: Users::class)]
-    private $users;
+    #[ORM\OneToMany(mappedBy: 'Permissions', targetEntity: PermissionsUsers::class, orphanRemoval: true)]
+    private Collection $permissionsUsers;
 
-    #[ORM\ManyToMany(targetEntity: Structures::class)]
-    private $structures; 
+    #[ORM\OneToMany(mappedBy: 'permissions', targetEntity: PermissionsStructures::class, orphanRemoval: true)]
+    private Collection $permissionsStructures; 
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
-        $this->structures = new ArrayCollection();
         $this->is_active = true;
+        $this->permissionsUsers = new ArrayCollection();
+        $this->permissionsStructures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,5 +106,65 @@ class Permissions
     public function __toString(): string
     {
         return $this->name ?: "";
+    }
+
+    /**
+     * @return Collection<int, PermissionsUsers>
+     */
+    public function getPermissionsUsers(): Collection
+    {
+        return $this->permissionsUsers;
+    }
+
+    public function addPermissionsUser(PermissionsUsers $permissionsUser): self
+    {
+        if (!$this->permissionsUsers->contains($permissionsUser)) {
+            $this->permissionsUsers->add($permissionsUser);
+            $permissionsUser->setPermissions($this);
+        }
+
+        return $this;
+    }
+
+    public function removePermissionsUser(PermissionsUsers $permissionsUser): self
+    {
+        if ($this->permissionsUsers->removeElement($permissionsUser)) {
+            // set the owning side to null (unless already changed)
+            if ($permissionsUser->getPermissions() === $this) {
+                $permissionsUser->setPermissions(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PermissionsStructures>
+     */
+    public function getPermissionsStructures(): Collection
+    {
+        return $this->permissionsStructures;
+    }
+
+    public function addPermissionsStructure(PermissionsStructures $permissionsStructure): self
+    {
+        if (!$this->permissionsStructures->contains($permissionsStructure)) {
+            $this->permissionsStructures->add($permissionsStructure);
+            $permissionsStructure->setPermissions($this);
+        }
+
+        return $this;
+    }
+
+    public function removePermissionsStructure(PermissionsStructures $permissionsStructure): self
+    {
+        if ($this->permissionsStructures->removeElement($permissionsStructure)) {
+            // set the owning side to null (unless already changed)
+            if ($permissionsStructure->getPermissions() === $this) {
+                $permissionsStructure->setPermissions(null);
+            }
+        }
+
+        return $this;
     }
 }
