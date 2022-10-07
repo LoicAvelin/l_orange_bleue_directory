@@ -36,3 +36,28 @@ $four-color: #000000;
     color: $first-color;
   }
 }
+
+/* RESPONSIVE */
+/* FOR I-PAD AND TABLET */
+@media screen and (min-width: 700px) {
+  .main__item--category {
+    margin: 4rem 5rem 4rem 5rem;
+    .main__item {
+      margin: 3rem 3rem 3rem 3rem;
+    }
+  }
+}
+@media screen and (min-width: 700px) and (orientation: landscape) {
+  .main__item {
+    margin: 3rem 4rem 3rem 4rem;
+  }
+}
+/* FOR DESKTOP */
+@media screen and (min-width: 1030px) {
+  .main__item--category {
+    margin: 5rem 8rem 5rem 8rem;
+    .main__item {
+      margin: 3rem 4rem 3rem 4rem;
+    }
+  }
+}

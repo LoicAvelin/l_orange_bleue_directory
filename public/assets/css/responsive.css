@@ -1,0 +1,15 @@
+/* For i-pad and tablet */
+@media screen and (min-width: 700px) {
+  :root {
+    font-size: 18px;
+  }
+}
+/* For desktop */
+@media screen and (min-width: 1030px) {
+  :root {
+    font-size: 20px;
+  }
+  .main__item--category {
+    margin: 5rem 8rem 5rem 8rem;
+  }
+}/*# sourceMappingURL=responsive.css.map */

@@ -3,8 +3,10 @@ form {
   border-radius: 1rem;
   box-shadow: 1rem 1rem 1rem #000000;
   color: #043565;
+  display: flex;
   font-size: 1rem;
   font-weight: bold;
+  justify-content: center;
   margin: 2rem 1.6rem 2rem 1rem;
   padding: 2rem;
 }
@@ -20,6 +22,7 @@ input, textarea, select {
   box-sizing: border-box;
   font-size: 1rem;
   padding: 0.5rem;
+  width: 19rem;
 }
 
 .form__input--button {
@@ -30,6 +33,25 @@ input, textarea, select {
   color: #043565;
   font-size: 1rem;
   font-weight: bold;
-  margin: 0.4rem;
+  margin: 0.5rem;
   padding: 0.6rem;
+}
+
+/* RESPONSIVE */
+/* FOR I-PAD AND TABLET */
+@media screen and (min-width: 700px) {
+  form {
+    margin: 2rem 8rem 2rem 8rem;
+  }
+}
+@media screen and (min-width: 700px) and (orientation: landscape) {
+  form {
+    margin: 2rem 10rem 2rem 10rem;
+  }
+}
+/* FOR DESKTOP */
+@media screen and (min-width: 1030px) {
+  form {
+    margin: 2rem 14rem 2rem 14rem;
+  }
 }/*# sourceMappingURL=form.css.map */
