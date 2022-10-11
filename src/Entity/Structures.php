@@ -34,7 +34,7 @@ class Structures
     #[ORM\JoinTable("structures_users")]
     private $users;
 
-    #[ORM\OneToMany(mappedBy: 'structures', targetEntity: PermissionsStructures::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'structures', targetEntity: PermissionsStructures::class)]
     private Collection $permissionsStructures;
 
     public function __construct()
@@ -118,18 +118,6 @@ class Structures
     public function setUsers($users): self
     {
         $this->users = $users;
-
-        return $this;
-    }
-
-    public function getPermissions()
-    {
-        return $this->permissions;
-    }
-
-    public function setPermissions($permissions): self
-    {
-        $this->permissions = $permissions;
 
         return $this;
     }

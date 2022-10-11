@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PermissionsUsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PermissionsUsersRepository::class)]
@@ -20,6 +21,11 @@ class PermissionsUsers
 
     #[ORM\Column]
     private ?bool $is_active = null;
+
+    public function __construct()
+    {
+        $this->is_active = true;
+    }
 
     public function getPermissions(): ?Permissions
     {

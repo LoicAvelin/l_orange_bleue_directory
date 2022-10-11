@@ -44,7 +44,7 @@ class UsersType extends AbstractType
             ]),
             new Length([
                 "min" => 6,
-                "minMessage" => "Your password should be at least {{ limit }} characters",
+                "minMessage" => "Le mot de passe doit contenir au moins {{ limit }} caractères.",
                 // max length allowed by Symfony for security reasons
                 "max" => 4096,
             ]),
@@ -53,10 +53,10 @@ class UsersType extends AbstractType
       ->add("name", TextType::class, ["label" => "Nom"])
       ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"])
       ->add("structures")
-      ->add("permissions")
       ->add("Valider", SubmitType::class, [
         "attr" => ["class" => "form__input--button"]
-      ]);
+      ])
+    ;
 
 // For add dynamic fields
 /*     $formModifier = function (FormInterface $form, Users $user) {

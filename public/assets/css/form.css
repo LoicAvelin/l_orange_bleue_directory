@@ -10,9 +10,8 @@ form {
   margin: 2rem 1.6rem 2rem 1rem;
   padding: 2rem;
 }
-
-label {
-  display: block;
+form label {
+  display: table-row;
   padding: 0.5rem;
 }
 
@@ -23,6 +22,10 @@ input, textarea, select {
   font-size: 1rem;
   padding: 0.5rem;
   width: 19rem;
+}
+
+#users_structures {
+  display: inline;
 }
 
 .form__input--button {

@@ -18,7 +18,8 @@ class PermissionsType extends AbstractType
       ->add("description", TextType::class, ["label" => "Description"])
       ->add("Valider", SubmitType::class, [
         "attr" => ["class" => "form__input--button"]
-      ]);
+      ])
+    ;
   }
 
   public function configureOptions(OptionsResolver $resolver)

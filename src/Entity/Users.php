@@ -47,7 +47,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinTable("structures_users")]
     private $structures; 
 
-    #[ORM\OneToMany(mappedBy: "users", targetEntity: PermissionsUsers::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: "users", targetEntity: PermissionsUsers::class)]
     private Collection $permissionsUsers;
 
     public function __construct()
@@ -188,18 +188,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPermissions()
-    {
-        return $this->permissions;
-    }
-
-    public function setPermissions($permissions): self
-    {
-        $this->permissions = $permissions;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, PermissionsUsers>
      */
@@ -228,5 +216,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?: "";
     }
 }

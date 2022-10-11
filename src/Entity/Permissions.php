@@ -25,10 +25,10 @@ class Permissions
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\OneToMany(mappedBy: 'Permissions', targetEntity: PermissionsUsers::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'Permissions', targetEntity: PermissionsUsers::class)]
     private Collection $permissionsUsers;
 
-    #[ORM\OneToMany(mappedBy: 'permissions', targetEntity: PermissionsStructures::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'permissions', targetEntity: PermissionsStructures::class)]
     private Collection $permissionsStructures; 
 
     public function __construct()
@@ -75,30 +75,6 @@ class Permissions
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;
-
-        return $this;
-    }
-
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    public function setUsers($users): self
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    public function getStructures()
-    {
-        return $this->structures;
-    }
-
-    public function setStructures($structures): self
-    {
-        $this->structures = $structures;
 
         return $this;
     }
