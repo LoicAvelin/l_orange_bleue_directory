@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\PermissionsUsersRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PermissionsUsersRepository::class)]

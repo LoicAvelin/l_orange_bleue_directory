@@ -2,13 +2,80 @@
 
 {% block title %}{{ parent() }}- Accueil manager{% endblock %}
 {% block stylesheets %} 
-  <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}"> 
+  <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> 
 {% endblock %}
 
-{% block h1 %}Bienvenue{% endblock %}
+{% block h1 %}Bienvenue {{ user.name }}{% endblock %}
 
 {% block main %}
-  <div class="main__item"><a href="/manager/info">Informations</a></div>
-  <div class="main__item"><a href="/manager/permissions">Permissions</a></div>
-  <div class="main__item"><a href="/manager/structure">Structure</a></div>
+  <div>
+    <h2>Informations personnelles</h2>
+    <h3>Nom : {{ user.name }}</h2>
+    <h3>Type de compte :
+      {% if user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}Administrateur
+      {% elseif user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %}Partenaire
+      {% else %}Manager
+      {% endif %}
+    </h3>
+    <h3>Adresse mail : {{ user.email }}</h3>
+    <p>Numéro de téléphone : {{ user.phoneNumber }}</p>
+    <p>Date de création : {{ user.createdAt | date("d-m-Y") }}</p>
+    <p>Actif : 
+      {% if user.isActive == 1 %}Oui{% else %}Non
+      {% endif %}
+    </p>
+  </div>
+  <div>
+    <h2>Permission(s) globale(s)</h2>
+      {% for permission in user.permissionsUsers %}
+      <p>Nom : {{ permission.Permissions }}</p> 
+      <p>Actif :
+        {% if permission.isActive == 1 %}Oui{% else %}Non
+        {% endif %}
+      </p>
+      <div>
+      {% if permission.isActive == 1 %}
+        <a href="{{ path('disable_permission_manager', {idPermission : permission.Permissions.id}) }}" class="main__div--button">Désactiver</a>
+      {% else %}
+        <a href="{{ path('enable_permission_manager', {idPermission : permission.Permissions.id }) }}"  class="main__div--button">Activer</a>
+      {% endif %}
+      </div>
+      {% endfor %}
+  </div>
+  
+  {% for structure in user.structures %}
+    <div>
+      <h2>Structure</h2>
+      <h3>Nom : {{ structure.name }}</h3>
+      <p>Numéro de téléphone : {{ structure.phoneNumber }}</p>
+      <p>Date de création : {{ structure.createdAt | date("d-m-Y") }}</p>
+      <p>Actif : 
+        {% if structure.isActive == 1 %}Oui{% else %}Non
+        {% endif %}
+      </p>
+      <div>
+      {% if structure.isActive == 1 %}
+        <a href="{{ path('disable_structure_manager', {idStructure : structure.id}) }}" class="main__div--button">Désactiver</a>
+      {% else %}
+        <a href="{{ path('enable_structure_manager', {idStructure : structure.id}) }}" class="main__div--button">Activer</a>
+      {% endif %}
+      </div>
+      <br>
+      <h2>Permission(s) structure</h2>
+      {% for permissionStructure in structure.permissionsStructures %}
+        <p>Permission : {{ permissionStructure.permissions }}</p>
+        <p>Permission active :
+          {% if permissionStructure.isActive == 1 %}Oui{% else %}Non
+          {% endif %}
+        </p>
+        <div>
+          {% if permissionStructure.isActive == 1 %}
+            <a href="{{ path('disable_permission_structure_manager', {idPermission : permissionStructure.permissions.id, idStructure : structure.id}) }}" class="main__div--button">Désactiver</a>
+          {% else %}
+            <a href="{{ path('enable_permission_structure_manager', {idPermission : permissionStructure.permissions.id, idStructure : structure.id}) }}"  class="main__div--button">Activer</a>
+          {% endif %}
+        </div>
+      {% endfor %} 
+    </div>
+  {% endfor %}
 {% endblock %}

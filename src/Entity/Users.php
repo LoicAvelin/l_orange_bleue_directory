@@ -43,7 +43,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(inversedBy: "structures", targetEntity: Structures::class)]
+    #[ORM\ManyToMany(targetEntity: Structures::class)]
     #[ORM\JoinTable("structures_users")]
     private $structures; 
 

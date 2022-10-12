@@ -27,10 +27,14 @@ header {
 
   .header__item--home {
     font-size: 1.5rem;
-    padding: 2rem;
+    padding: 1rem;
   }
 
   .header__item--welcome {
+    h1 {
+      margin: 0rem;
+      padding: 0.1rem;
+    }
     text-align: center;
   }
 }

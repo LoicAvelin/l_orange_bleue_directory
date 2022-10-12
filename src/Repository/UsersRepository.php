@@ -59,17 +59,24 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
 //    /**
 //     * @return Users[] Returns an array of Users objects
 //     */
-//    public function findByExampleField($value): array
+//    public function showPermissionsUsers($id): array
 //    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+//        $sql = $this->createNativeQuery('SELECT * FROM users 
+//            JOIN permissions_users ON users.id = permissions_users.users_id
+//            JOIN permissions ON permissions_users.permissions_id = permissions.id
+//            WHERE users.id = ?');
+
+/*         $queryBuilder = $this->_em->createQueryBuilder()
+            ->select([''])
+            ->andWhere('u.id = :id')
+            ->leftJoin('u.permissionsUsers', 'fc')
+            ->addSelect('fc')
+            ->setParameter('id', $id)
+            ->getQuery()
+        ;  */
+
+//        return $sql->getResult();
+//    } 
 
 //    public function findOneBySomeField($value): ?Users
 //    {

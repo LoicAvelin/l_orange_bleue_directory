@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Structures;
-use App\Entity\Users;
+use App\Repository\PermissionsStructuresRepository;
+use App\Repository\PermissionsUsersRepository;
+use App\Repository\StructuresRepository;
+use App\Repository\UsersRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,67 +14,74 @@ use Symfony\Component\Routing\Annotation\Route;
 class PartnerController extends AbstractController
 {
     #[Route("/partner", name: "app_partner")]
-    public function partnerHome(): Response
+    public function partnerHome(UsersRepository $repository): Response
     {
-        return $this->render("partner/partnerHome.html.twig");
-    }
-
-    #[Route("/partner/info", name: "app_partner_info")]
-    public function partnerInformations(ManagerRegistry $doctrine): Response
-    {
-        $repository = $doctrine->getRepository(Users::class);
         $id = $this->getUser()->getId();
         $user = $repository->find($id);
-        return $this->render("partner/partnerInformations.html.twig", [
+        return $this->render("partner/partnerHome.html.twig", [
             "user" => $user
         ]);
     }
 
-    #[Route("/partner/permissions", name: "app_partner_permissions")]
-    public function partnerPermissions(ManagerRegistry $doctrine): Response
-    {
-        $repository = $doctrine->getRepository(Users::class);
-        $id = $this->getUser()->getId();
-        $user = $repository->find($id);
-        $permissions = $user->getPermissions();
-        return $this->render("partner/partnerPermissions.html.twig", [
-            "permissions" => $permissions
-        ]);
-    }
-    // TODO: update the entity Partner_permission with a row is_active for manage the disable/enable for each partner
-    #[Route("/partner/disable/permission", name: "disable_permission_partner")]
-    public function disable(ManagerRegistry $doctrine, Permissions $permission):Response
+    #[Route("/partner/disable/permission/{idPermission}", name: "disable_permission_partner")]
+    public function disablePermission(ManagerRegistry $doctrine, PermissionsUsersRepository $repo, int $idPermission):Response
     {
         $entityManager = $doctrine->getManager();
-        $permission->setIsActive(false);
-        $entityManager->flush($permission);
+        $id = $this->getUser()->getId();
+        $permissionUser = $repo->findOneBy(array("Permissions" => $idPermission, "users" => $id))->setIsActive(false);
+        $entityManager->flush($permissionUser);
 
-        return $this->redirectToRoute("app_partner_permissions");
+        return $this->redirectToRoute("app_partner");
     }
 
-    #[Route("/partner/enable/permission", name: "enable_permission_partner")]
-    public function enable(ManagerRegistry $doctrine, Permissions $permission):Response
+    #[Route("/partner/enable/permission/{idPermission}", name: "enable_permission_partner")]
+    public function enablePermission(ManagerRegistry $doctrine, PermissionsUsersRepository $repo, int $idPermission):Response
     {
         $entityManager = $doctrine->getManager();
-        $permission->setIsActive(true);
-        $entityManager->flush($permission);
-
-        return $this->redirectToRoute("app_partner_permissions");
-    }
-    // TODO: add permissions for each structures
-    #[Route("/partner/structures", name: "app_partner_structures")]
-    public function partnerStructures(ManagerRegistry $doctrine): Response
-    {  
-        $repository = $doctrine->getRepository(Users::class);
         $id = $this->getUser()->getId();
-        $user = $repository->find($id);
-        $structures = $user->getStructures();
-        $repositoryStructures = $doctrine->getRepository(Structures::class);
-        $idStructures = $this->getUser();
-        $permissions = $repositoryStructures->find($idStructures);
-        return $this->render("partner/partnerStructures.html.twig", [
-            "structures" => $structures,
-            "permissions" => $permissions
-        ]);
+        $permissionUser = $repo->findOneBy(array("Permissions" => $idPermission, "users" => $id))->setIsActive(true);
+        $entityManager->flush($permissionUser);
+
+        return $this->redirectToRoute("app_partner");
+    }
+
+    #[Route("/partner/disable/structure/{idStructure}", name: "disable_structure_partner")]
+    public function disableStructure(ManagerRegistry $doctrine, StructuresRepository $repo, int $idStructure):Response
+    {
+        $entityManager = $doctrine->getManager();
+        $structure = $repo->find($idStructure)->setIsActive(false);
+        $entityManager->flush($structure);
+
+        return $this->redirectToRoute("app_partner");
+    }
+
+    #[Route("/partner/enable/structure/{idStructure}", name: "enable_structure_partner")]
+    public function enableStructure(ManagerRegistry $doctrine, StructuresRepository $repo, int $idStructure):Response
+    {
+        $entityManager = $doctrine->getManager();
+        $structure = $repo->find($idStructure)->setIsActive(true);
+        $entityManager->flush($structure);
+
+        return $this->redirectToRoute("app_partner");
+    }
+
+    #[Route("/partner/disable/permission/structure/{idPermission}{idStructure}", name: "disable_permission_structure_partner")]
+    public function disablePermissionStructure(ManagerRegistry $doctrine, PermissionsStructuresRepository $repo, int $idPermission, int $idStructure):Response
+    {
+        $entityManager = $doctrine->getManager();
+        $permissionStructure = $repo->findOneBy(array("permissions" => $idPermission, "structures" => $idStructure))->setIsActive(false);
+        $entityManager->flush($permissionStructure);
+
+        return $this->redirectToRoute("app_partner");
+    }
+
+    #[Route("/partner/enable/permission/structure/{idPermission}{idStructure}", name: "enable_permission_structure_partner")]
+    public function enablePermissionStructure(ManagerRegistry $doctrine, PermissionsStructuresRepository $repo, int $idPermission, int $idStructure):Response
+    {
+        $entityManager = $doctrine->getManager();
+        $permissionStructure = $repo->findOneBy(array("permissions" => $idPermission, "structures" => $idStructure))->setIsActive(true);
+        $entityManager->flush($permissionStructure);
+
+        return $this->redirectToRoute("app_partner");
     }
 }

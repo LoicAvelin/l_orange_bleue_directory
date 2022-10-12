@@ -6,6 +6,7 @@
 
 {% block main %}
 <form action="{{ path('app_login') }}" method="post">
+<div>
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -37,8 +38,9 @@
             </label>
         </div>
     #}
-    <div class="form__input--button">
-        <button type="submit">Connexion</button>
+    <div>
+        <button type="submit" class="form__input--button">Connexion</button>
     </div>
+</div>
 </form>
 {% endblock %}

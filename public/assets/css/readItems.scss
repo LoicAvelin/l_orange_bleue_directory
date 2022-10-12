@@ -28,6 +28,7 @@ main {
   }
 }
 
+
 /* RESPONSIVE */
 /* FOR I-PAD AND TABLET */
 @media screen and (min-width: 700px) {
@@ -42,22 +43,26 @@ main {
 }
 @media screen and (min-width: 700px) and (orientation: landscape) {
   main {
+    display: flex;
+    flex-wrap: wrap; 
     div {
       margin: 3rem 4rem 3rem 4rem;
       div {
         margin: 1rem 8rem 1rem 8rem;
       }
-    }
+    } 
   }
-}
+} 
 /* FOR DESKTOP */
 @media screen and (min-width: 1030px) {
-main {
-  div {
-    margin: 3rem 10rem 3rem 10rem;
+  main {
+    display: flex;
+    flex-wrap: wrap; 
     div {
-      margin: 1rem 9rem 1rem 9rem;
-    }
+      margin: 3rem 3.5rem 3rem 3.5rem;
+      div {
+        margin: 1rem 9rem 1rem 9rem;
+      }
+    }  
   }
-}
-}
+} 

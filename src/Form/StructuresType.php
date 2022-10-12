@@ -19,9 +19,6 @@ class StructuresType extends AbstractType
       ->add("name", TextType::class, ["label" => "Nom"])
       ->add("address", TextType::class, ["label" => "Adresse postale"])
       ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"])
-      ->add("permissionsStructures", CollectionType::class, array(
-        
-      ))
       ->add("Valider", SubmitType::class, [
         "attr" => ["class" => "form__input--button"]
       ])

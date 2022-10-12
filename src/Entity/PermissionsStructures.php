@@ -21,6 +21,11 @@ class PermissionsStructures
     #[ORM\Column]
     private ?bool $is_active = null;
 
+    public function __construct()
+    {
+        $this->is_active = true;
+    }
+
     public function getPermissions(): ?Permissions
     {
         return $this->permissions;

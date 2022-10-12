@@ -30,7 +30,7 @@ class Structures
     #[ORM\Column]
     private ?bool $is_active = null;
 
-    #[ORM\ManyToMany(mappedBy: "users", targetEntity: Users::class)]
+    #[ORM\ManyToMany(targetEntity: Users::class)]
     #[ORM\JoinTable("structures_users")]
     private $users;
 
