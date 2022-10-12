@@ -13,8 +13,9 @@
 
     {% if app.user %}
         <div>
-            Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+            Vous êtes connecté avec l'identifiant {{ app.user.userIdentifier }},  mais votre compte n'est pac actif. Veuillez contacter le service technique pour avoir plus d'informations à ce sujet. Nous vous remercions de votre compréhension. 
         </div>
+        <br>
     {% endif %}
     <div>
         <label for="inputEmail">Email</label>

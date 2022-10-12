@@ -42,13 +42,20 @@ class UsersController extends AbstractController
   }
 
   #[Route("/admin/edit/user/{id}", name: "edit_user")]
-  public function edit(Request $request, ManagerRegistry $doctrine, Users $user): Response
+  public function edit(Request $request, UserPasswordHasherInterface $userPasswordHasher,ManagerRegistry $doctrine, Users $user): Response
   {
     $form = $this->createForm(UsersType::class, $user);
 
     $form->handleRequest($request);
     if ($form->isSubmitted() && $form->isValid()) {
-      $doctrine->getManager()->flush();
+      $user->setPassword(
+        $userPasswordHasher->hashPassword(
+          $user, 
+          $form->get("password")->getData()
+        )
+      );
+      $entityManager = $doctrine->getManager();
+      $entityManager->flush();
     }
 
     return $this->render("admin/users/editUser.html.twig", [

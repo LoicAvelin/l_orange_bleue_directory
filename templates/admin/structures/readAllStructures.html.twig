@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} - Structures{% endblock %}
 
 {% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> {% endblock %}
+{% block javascripts %} <script src="{{ asset('assets/js/readItems.js') }}" defer></script> {% endblock %}
 
 {% block home %}<a href="/admin">Accueil</a>{% endblock %}
 {% block h1 %}Structures{% endblock %}
@@ -20,16 +21,16 @@
         {% endif %}
       </p>
       <div>
-        <a href="{{ path('delete_structure', {id : structure.id}) }}" class="main__div--button">Supprimer</a>
+        <a onclick="return deleteConfirm()" href="{{ path('delete_structure', {id : structure.id}) }}" class="main__div--button">Supprimer</a>
       </div>
       <div>
-        <a href="{{ path('edit_structure', {id : structure.id}) }}" class="main__div--button">Modifier</a>
+        <a onclick="return modifyConfirm()" href="{{ path('edit_structure', {id : structure.id}) }}" class="main__div--button">Modifier</a>
       </div>
       <div>
       {% if structure.isActive == 1 %}
-        <a href="{{ path('disable_structure', {id : structure.id}) }}" class="main__div--button">Désactiver</a>
+        <a onclick="return disableConfirm()" href="{{ path('disable_structure', {id : structure.id}) }}" class="main__div--button">Désactiver</a>
       {% else %}
-        <a href="{{ path('enable_structure', {id : structure.id}) }}" class="main__div--button">Activer</a>
+        <a onclick="return enableConfirm()" href="{{ path('enable_structure', {id : structure.id}) }}" class="main__div--button">Activer</a>
       {% endif %}
       </div>
     </div>

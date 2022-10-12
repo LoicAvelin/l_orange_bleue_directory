@@ -13,11 +13,11 @@ class SecurityController extends AbstractController
     #[Route(path: "/login", name: "app_login")]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_ADMIN")) {
+        if ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_ADMIN") && $this->getUser()->isIsActive() == true) {
             return $this->redirectToRoute("app_admin");
-        } elseif ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_PARTNER")) {
+        } elseif ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_PARTNER") && $this->getUser()->isIsActive() == true) {
             return $this->redirectToRoute("app_partner");
-        } elseif ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_MANAGER")) {
+        } elseif ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_MANAGER") && $this->getUser()->isIsActive() == true) {
             return $this->redirectToRoute("app_manager");
         }
 
