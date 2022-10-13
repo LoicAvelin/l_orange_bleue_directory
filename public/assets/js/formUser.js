@@ -26,7 +26,7 @@
     })
   });
 } */
-  const addFormToCollection = (e) => {
+/*   const addFormToCollection = (e) => {
     const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
     const item = document.createElement('li');
@@ -48,4 +48,9 @@
   .querySelectorAll('.add_item_link')
   .forEach(btn => {
     btn.addEventListener("click", addFormToCollection)
-  });
+  }); */
+
+  function submitConfirm() {
+    let result = confirm('Souhaitez-vous valider ce formulaire ?');
+    return result;
+  }

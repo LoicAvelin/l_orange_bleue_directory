@@ -54,7 +54,10 @@ class UsersType extends AbstractType
       ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"])
       ->add("structures")
       ->add("Valider", SubmitType::class, [
-        "attr" => ["class" => "form__input--button"]
+        "attr" => [
+          "class" => "form__input--button",
+          "onclick" => "return submitConfirm()"
+        ]
       ])
     ;
 

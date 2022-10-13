@@ -29,7 +29,7 @@
         <a onclick="return deleteConfirm()" href="{{ path('delete_user', {id : user.id}) }}" class="main__div--button">Supprimer</a>
       </div>
       <div>
-        <a onclick="return modifyConfirm()" href="{{ path('edit_user', {id : user.id}) }}" class="main__div--button">Modifier</a>
+        <a href="{{ path('edit_user', {id : user.id}) }}" class="main__div--button">Modifier</a>
       </div>
       <div>
       {% if user.isActive == 1 %}

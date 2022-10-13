@@ -32,7 +32,10 @@ class PermissionsUsersType extends AbstractType
                 }
             ])
             ->add("Valider", SubmitType::class, [
-                "attr" => ["class" => "form__input--button"]
+                "attr" => [
+                    "class" => "form__input--button",
+                    "onclick" => "return submitConfirm()"
+                ]
             ])
         ;
     }

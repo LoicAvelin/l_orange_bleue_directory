@@ -20,7 +20,10 @@ class StructuresType extends AbstractType
       ->add("address", TextType::class, ["label" => "Adresse postale"])
       ->add("phone_number", TelType::class, ["label" => "Numéro de téléphone"])
       ->add("Valider", SubmitType::class, [
-        "attr" => ["class" => "form__input--button"]
+        "attr" => [
+          "class" => "form__input--button",
+          "onclick" => "return submitConfirm()"
+        ]
       ])
     ;
   }

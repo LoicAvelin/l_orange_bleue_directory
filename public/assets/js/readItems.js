@@ -3,11 +3,6 @@ function deleteConfirm() {
   return result;
 }
 
-function modifyConfirm() {
-  let result = confirm('Confirmez-vous cette modification ?');
-  return result;
-}
-
 function disableConfirm() {
   let result = confirm('Confirmez-vous cette désactivation ?');
   return result;

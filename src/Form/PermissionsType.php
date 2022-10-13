@@ -17,7 +17,10 @@ class PermissionsType extends AbstractType
       ->add("name", TextType::class, ["label" => "Nom"])
       ->add("description", TextType::class, ["label" => "Description"])
       ->add("Valider", SubmitType::class, [
-        "attr" => ["class" => "form__input--button"]
+        "attr" => [
+          "class" => "form__input--button",
+          "onclick" => "return submitConfirm()"
+        ]
       ])
     ;
   }

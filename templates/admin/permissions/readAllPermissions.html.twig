@@ -22,7 +22,7 @@
         <a onclick="return deleteConfirm()" href="{{ path('delete_permission', {id : permission.id}) }}" class="main__div--button">Supprimer</a>
       </div>
       <div>
-        <a onclick="return modifyConfirm()" href="{{ path('edit_permission', {id : permission.id}) }}" class="main__div--button">Modifier</a>
+        <a href="{{ path('edit_permission', {id : permission.id}) }}" class="main__div--button">Modifier</a>
       </div>
       <div>
       {% if permission.isActive == 1 %}
