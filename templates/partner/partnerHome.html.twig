@@ -4,7 +4,7 @@
 {% block stylesheets %} 
   <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> 
 {% endblock %}
-
+{% block home %} <a href="/logout">Déconnexion</a> {% endblock %}
 {% block h1 %}Bienvenue {{ user.name }}{% endblock %}
 
 {% block main %}
