@@ -5,7 +5,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -13,11 +12,25 @@ class SecurityController extends AbstractController
     #[Route(path: "/login", name: "app_login")]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_ADMIN") && $this->getUser()->isIsActive() == true) {
+        if (
+            $this->getUser()
+            && $this->container->get("security.authorization_checker")->isGranted("ROLE_ADMIN") 
+            && $this->getUser()->isIsActive() == true
+        ) {
             return $this->redirectToRoute("app_admin");
-        } elseif ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_PARTNER") && $this->getUser()->isIsActive() == true) {
+        } 
+        elseif (
+            $this->getUser() 
+            && $this->container->get("security.authorization_checker")->isGranted("ROLE_PARTNER") 
+            && $this->getUser()->isIsActive() == true
+        ) {
             return $this->redirectToRoute("app_partner");
-        } elseif ($this->getUser() && $this->container->get("security.authorization_checker")->isGranted("ROLE_MANAGER") && $this->getUser()->isIsActive() == true) {
+        } 
+        elseif (
+            $this->getUser() 
+            && $this->container->get("security.authorization_checker")->isGranted("ROLE_MANAGER") 
+            && $this->getUser()->isIsActive() == true
+        ) {
             return $this->redirectToRoute("app_manager");
         }
 

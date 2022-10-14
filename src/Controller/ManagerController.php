@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
 use App\Repository\PermissionsStructuresRepository;
 use App\Repository\PermissionsUsersRepository;
 use App\Repository\StructuresRepository;
