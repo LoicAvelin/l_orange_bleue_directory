@@ -36,7 +36,6 @@
     <!-- END: Link tag for the font google Pacifico -->
     <!-- Link tag for the stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     {% block stylesheets %}{% endblock %}
     {% block javascripts %}{% endblock %}
@@ -46,6 +45,7 @@
       {% block header %}
         <div class="header__item--home">
           {% block home %}{% endblock %}
+          {% block research %}{% endblock %}
         </div>
         <div class="header__item--welcome">
           <h1>{% block h1 %}Connexion{% endblock %}</h1>

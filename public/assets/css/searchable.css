@@ -60,9 +60,6 @@ main .content div .main__div--button:hover {
   main .container__element--searchBar {
     width: 30rem;
   }
-  main .content div {
-    width: 30rem;
-  }
 }
 /* FOR DESKTOP */
 @media screen and (min-width: 1030px) {
@@ -78,9 +75,6 @@ main .content div .main__div--button:hover {
   main .content {
     display: flex;
     flex-wrap: wrap;
-  }
-  main .content div {
-    width: 20rem;
-    margin: 3rem 1rem 3rem 1rem;
+    justify-content: center;
   }
 }/*# sourceMappingURL=searchable.css.map */

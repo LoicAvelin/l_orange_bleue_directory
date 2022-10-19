@@ -1,39 +1,42 @@
 {% extends 'base.html.twig' %}
 
+{% set queryParams = app.request.query.all %}
+
 {% block title %}{{ parent() }} - Structures{% endblock %}
 
-{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> {% endblock %}
-{% block javascripts %} <script src="{{ asset('assets/js/readItems.js') }}" defer></script> {% endblock %}
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/searchable.css') }}"> {% endblock %}
+{% block javascripts %} 
+  <script src="{{ asset('assets/js/readItems.js') }}" defer></script>
+  <script src="{{ asset('assets/js/jQuery.js') }}" defer></script>
+  <script src="{{ asset('assets/js/searchable.js') }}" defer></script> 
+{% endblock %}
 
 {% block home %}<a href="/admin">Accueil</a>{% endblock %}
 {% block h1 %}Structures{% endblock %}
 
 {% block main %}
-  
-    {% for structure in structures %}
-    <div>
-      <h2>Nom : {{ structure.name }}</h2>
-      <h3>Adresse : {{ structure.address }}</h3>
-      <p>Numéro de téléphone : {{ structure.phoneNumber }}</p>
-      <p>Date de création : {{ structure.createdAt | date("d-m-Y") }}</p>
-      <p>Actif : 
-        {% if structure.isActive == 1 %}Oui{% else %}Non
-        {% endif %}
-      </p>
-      <div>
-        <a onclick="return deleteConfirm()" href="{{ path('delete_structure', {id : structure.id}) }}" class="main__div--button">Supprimer</a>
-      </div>
-      <div>
-        <a href="{{ path('edit_structure', {id : structure.id}) }}" class="main__div--button">Modifier</a>
-      </div>
-      <div>
-      {% if structure.isActive == 1 %}
-        <a onclick="return disableConfirm()" href="{{ path('disable_structure', {id : structure.id}) }}" class="main__div--button">Désactiver</a>
-      {% else %}
-        <a onclick="return enableConfirm()" href="{{ path('enable_structure', {id : structure.id}) }}" class="main__div--button">Activer</a>
+<div class="container__element--searchBar">
+    <label for="">Chercher une structure</label>
+    <input type="text" name="user" id="userFilter" placeholder="Taper le nom de la structure">
+    <h3>Filtres</h3>
+    <form id="filters">
+
+      {% set checkedAS= "" %}
+      {% set checkedIS= "" %}
+
+      {% if queryParams is not empty %}
+        {% set checkedAS = (queryParams.activeStructure|default("0")) ? "checked" : "" %}
+        {% set checkedIS = (queryParams.inactiveStructure|default("0")) ? "checked" : "" %}
       {% endif %}
-      </div>
-    </div>
-    {% endfor %}
-  
+
+      <p><input type="checkbox" name="activeStructure" id="activeStructure" value="true" {{checkedAS}}>
+      <label for="activeStructure">Structure Active</label></p>
+      <p><input type="checkbox" name="inactiveStructure" id="inactiveStructure" value="true" {{checkedIS}}>
+      <label for="inactiveStructure">Structure Inactive</label></p>
+        
+    </form>
+  </div>
+  <div class="content" id="filter">
+    {% include "admin/structures/_content.html.twig" %}
+  </div>
 {% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Structures;
 use App\Form\StructuresType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -79,10 +80,29 @@ class StructuresController extends AbstractController
   }
 
   #[Route("/admin/structure/read-all", name: "read_all_structure")]
-  public function readAll(ManagerRegistry $doctrine): Response
+  public function readAll(ManagerRegistry $doctrine, Request $request): Response
   {
-    $repository = $doctrine->getRepository(Structures::class);
-    $structures = $repository->findAll();
+    // RECOVER ALL FILTERS
+    $filterActiveStructure = $request->get("activeStructure");
+    $filterInactiveStructure = $request->get("inactiveStructure");
+
+    $repositoryStructure = $doctrine->getRepository(Structures::class);
+
+    if ($filterActiveStructure == true) {
+      $structures = $repositoryStructure->getActiveStructures();
+    } elseif ($filterInactiveStructure == true) {
+      $structures = $repositoryStructure->getInactiveStructures();
+    } else {
+      $structures = $repositoryStructure->findAll();
+    }
+
+    if ($request->get("ajax")){
+      return new JsonResponse([
+          "content" => $this->renderView("admin/structures/_content.html.twig", [
+              "structures" => $structures
+          ])
+      ]);
+    }
     return $this->render("admin/structures/readAllStructures.html.twig", [
       "structures" => $structures
     ]);

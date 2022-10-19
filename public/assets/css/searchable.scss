@@ -79,12 +79,6 @@ main {
     .container__element--searchBar {
       width: 30rem;
     }
-
-    .content {
-      div {
-        width: 30rem;
-      }
-    }
   }
 } 
 /* FOR DESKTOP */
@@ -102,10 +96,7 @@ main {
     .content {
       display: flex;
       flex-wrap: wrap;
-      div {
-        width: 20rem;
-        margin: 3rem 1rem 3rem 1rem;
-      }
+      justify-content: center;
     }
   }
 } 

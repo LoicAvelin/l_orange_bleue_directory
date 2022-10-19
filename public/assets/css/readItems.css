@@ -38,12 +38,7 @@ main div .main__div--button:hover {
   main {
     display: flex;
     flex-wrap: wrap;
-  }
-  main div {
-    margin: 3rem 4rem 3rem 4rem;
-  }
-  main div div {
-    margin: 1rem 8rem 1rem 8rem;
+    justify-content: center;
   }
 }
 /* FOR DESKTOP */
@@ -51,11 +46,6 @@ main div .main__div--button:hover {
   main {
     display: flex;
     flex-wrap: wrap;
-  }
-  main div {
-    margin: 3rem 3.5rem 3rem 3.5rem;
-  }
-  main div div {
-    margin: 1rem 9rem 1rem 9rem;
+    justify-content: center;
   }
 }/*# sourceMappingURL=readItems.css.map */

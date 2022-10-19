@@ -7,6 +7,7 @@ use App\Form\UsersType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -134,11 +135,40 @@ class UsersController extends AbstractController
   }
 
   #[Route("/admin/user/read-all", name: "read_all_user")]
-  public function readAll(ManagerRegistry $doctrine): Response
+  public function readAll(ManagerRegistry $doctrine, Request $request): Response
   {
-    $repository = $doctrine->getRepository(Users::class);
-    $users = $repository->findAll();
-    return $this->render("admin//users/readAllUsers.html.twig", [
+    // RECOVER ALL FILTERS
+    $filterActiveUser = $request->get("activeUser");
+    $filterInactiveUser = $request->get("inactiveUser");
+    $filterPartner = $request->get("partner");
+    $filterManager = $request->get("manager");
+    $filterAdmin = $request->get("admin");
+
+    $repositoryUser = $doctrine->getRepository(Users::class);
+    $users = "";
+
+    if ($filterActiveUser == true) {
+      $users = $repositoryUser->getActiveUsers();
+  } elseif ($filterInactiveUser == true) {
+      $users = $repositoryUser->getInactiveUsers();
+  } elseif ($filterPartner == true) {
+      $users = $repositoryUser->findByRole('"ROLE_PARTNER"');
+  } elseif ($filterManager == true) {
+      $users = $repositoryUser->findByRole("[]");
+  } elseif ($filterAdmin == true) {
+    $users = $repositoryUser->findByRole('"ROLE_ADMIN"');
+  } else {
+      $users = $repositoryUser->findAll();
+  }
+
+  if ($request->get("ajax")){
+    return new JsonResponse([
+        "content" => $this->renderView("admin/users/_content.html.twig", [
+            "users" => $users
+        ])
+    ]);
+  }
+    return $this->render("admin/users/readAllUsers.html.twig", [
       "users" => $users
     ]);
   }
