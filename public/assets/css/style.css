@@ -8,6 +8,10 @@ body {
   color: #ffaf1b;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 a:link {
   color: #ffaf1b;
   text-decoration: none;
@@ -35,4 +39,16 @@ header .header__item--welcome {
 header .header__item--welcome h1 {
   margin: 0rem;
   padding: 0.1rem;
+}
+
+footer {
+  background-color: #043565;
+  height: 13rem;
+  font-size: 1rem;
+}
+footer .footer__item--home {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  padding: 1rem;
 }/*# sourceMappingURL=style.css.map */

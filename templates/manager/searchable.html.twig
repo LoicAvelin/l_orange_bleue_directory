@@ -69,3 +69,14 @@
     {% include "manager/_content.html.twig" %}
   </div>
 {% endblock %}
+{% block homeFooter %}
+  <a 
+    {% if user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %} 
+      href="/partner" 
+    {% elseif user.roles == ['ROLE_MANAGER'] %} 
+      href="/manager" 
+    {% elseif user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}
+      href="/admin"
+    {% endif %}
+  >Accueil</a>
+{% endblock %}

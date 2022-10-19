@@ -10,6 +10,10 @@ body {
   color: $second-color;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 a:link {
   color: $second-color;
   text-decoration: none;
@@ -38,5 +42,18 @@ header {
       padding: 0.1rem;
     }
     text-align: center;
+  }
+}
+
+footer {
+  background-color: $first-color;
+  height: 13rem;
+  font-size: 1rem;
+
+  .footer__item--home {
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: space-between;
+    padding: 1rem;
   }
 }

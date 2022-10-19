@@ -55,5 +55,13 @@
     <main>
       {% block main %}{% endblock %}
     </main>
+    <footer>
+      {% block footer %}
+        <div class="footer__item--home">
+          {% block homeFooter %}{% endblock %}
+          {% block researchFooter %}{% endblock %}
+        </div>
+      {% endblock %}
+    </footer>
 	</body>
 	</html>
