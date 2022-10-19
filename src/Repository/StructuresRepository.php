@@ -39,6 +39,31 @@ class StructuresRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Returns all active structures
+     *
+     * @return void
+     */
+    public function getActiveStructures()
+    {
+        $query = $this->createQueryBuilder("s")
+            ->where("s.is_active = 1");
+        
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Returns all inactive structures
+     *
+     * @return void
+     */
+    public function getInactiveStructures()
+    {
+        $query = $this->createQueryBuilder("s")
+            ->where("s.is_active = 0");
+        
+            return $query->getQuery()->getResult();
+    }
 //    /**
 //     * @return Structures[] Returns an array of Structures objects
 //     */

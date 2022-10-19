@@ -8,7 +8,6 @@
 {% block h1 %}Utilisateurs{% endblock %}
 
 {% block main %}
-  
     {% for user in users %}
     <div>
       <h2>Nom : {{ user.name }}</h2>
@@ -40,5 +39,4 @@
       </div>
     </div>
     {% endfor %}
-  
 {% endblock %}

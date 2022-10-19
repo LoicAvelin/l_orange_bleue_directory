@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Structures;
+use App\Entity\Users;
 use App\Repository\PermissionsStructuresRepository;
 use App\Repository\PermissionsUsersRepository;
 use App\Repository\StructuresRepository;
 use App\Repository\UsersRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -83,5 +87,55 @@ class PartnerController extends AbstractController
         $entityManager->flush($permissionStructure);
 
         return $this->redirectToRoute("app_partner");
+    }
+
+    #[Route("/partner/searchable/", name: "app_partner_searchable")]
+    public function searchable(ManagerRegistry $doctrine, Request $request): Response
+    {
+        $filterActiveUser = $request->get("activeUser");
+        $filterInactiveUser = $request->get("inactiveUser");
+        $filterPartner = $request->get("partner");
+        $filterManager = $request->get("manager");
+        $filterActiveStructure = $request->get("activeStructure");
+        $filterInactiveStructure = $request->get("inactiveStructure");
+        $filterStructure = $request->get("structure");
+
+        $repositoryUser = $doctrine->getRepository(Users::class);
+        $repositoryStructure = $doctrine->getRepository(Structures::class);
+        $users = "";
+        $structures = "";
+
+        if ($filterActiveUser == true) {
+            $users = $repositoryUser->getActiveUsers();
+        } elseif ($filterInactiveUser == true) {
+            $users = $repositoryUser->getInactiveUsers();
+        } elseif ($filterPartner == true) {
+            $users = $repositoryUser->findByRole('"ROLE_PARTNER"');
+        } elseif ($filterManager == true) {
+            $users = $repositoryUser->findByRole("[]");
+        } elseif ($filterActiveStructure == true) {
+            $structures = $repositoryStructure->getActiveStructures();
+        } elseif ($filterInactiveStructure == true) {
+            $structures = $repositoryStructure->getInactiveStructures();
+        } elseif ($filterStructure == true) {
+            $structures = $repositoryStructure->findAll();
+        } else {
+            $users = $repositoryUser->findAll();
+            $structures = $repositoryStructure->findAll();
+        }
+
+        if ($request->get("ajax")){
+            return new JsonResponse([
+                "content" => $this->renderView("partner/_content.html.twig", [
+                    "users" => $users,
+                    "structures" => $structures
+                ])
+            ]);
+        }
+
+        return $this->render("partner/searchable.html.twig", [
+            "users" => $users,
+            "structures" => $structures
+        ]);
     }
 }

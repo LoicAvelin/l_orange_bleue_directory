@@ -56,6 +56,46 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
         $this->add($user, true);
     }
 
+    /**
+     * Returns all active users
+     *
+     * @return void
+     */
+    public function getActiveUsers()
+    {
+        $query = $this->createQueryBuilder("u")
+            ->where("u.is_active = 1");
+        
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Returns all inactive users
+     *
+     * @return void
+     */
+    public function getInactiveUsers()
+    {
+        $query = $this->createQueryBuilder("u")
+            ->where("u.is_active = 0");
+        
+            return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param string $role
+     *
+     * @return array
+     */
+    public function findByRole($role)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.roles LIKE :role')
+            ->setParameter('role', '%' . $role . '%');
+
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Users[] Returns an array of Users objects
 //     */

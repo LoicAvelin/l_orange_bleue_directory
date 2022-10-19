@@ -5,6 +5,31 @@ $four-color: #000000;
 $fifth-color: #ffffff;
 
 main {
+  .container__element--searchBar {
+    background-color: $third-color;
+    border-radius: 1rem;
+    box-shadow: 1rem 1rem 1rem $four-color;
+    color: $first-color;
+    font-size: 1rem;
+    margin: 2rem 1rem 0rem 1rem;
+    padding: 1rem;
+    text-align: center;
+
+    input {
+      margin: 0.3rem;
+    }
+
+    h3 {
+      margin: 0.5rem 0 0 0;
+    }
+
+    #filters {
+
+      display: inline-block;
+    }
+  }
+  
+  .content {
   div {
     background-color: $third-color;
     border-radius: 1rem;
@@ -26,6 +51,7 @@ main {
       color: $fifth-color;
     }
   }
+  }
 }
 
 .highlighted{
@@ -37,37 +63,49 @@ main {
 /* RESPONSIVE */
 /* FOR I-PAD AND TABLET */
 @media screen and (min-width: 700px) {
-  main {
+  .content{
     div {
       margin: 3rem 6rem 3rem 6rem;
-      div {
-        margin: 1rem 7rem 1rem 7rem;
-      }
     }
   }
 }
 @media screen and (min-width: 700px) and (orientation: landscape) {
   main {
     display: flex;
-    flex-wrap: wrap; 
-    div {
-      margin: 3rem 4rem 3rem 4rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+
+    .container__element--searchBar {
+      width: 30rem;
+    }
+
+    .content {
       div {
-        margin: 1rem 8rem 1rem 8rem;
+        width: 30rem;
       }
-    } 
+    }
   }
 } 
 /* FOR DESKTOP */
 @media screen and (min-width: 1030px) {
   main {
     display: flex;
-    flex-wrap: wrap; 
-    div {
-      margin: 3rem 3.5rem 3rem 3.5rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+
+    .container__element--searchBar {
+      width: 30rem;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
       div {
-        margin: 1rem 9rem 1rem 9rem;
+        width: 20rem;
+        margin: 3rem 1rem 3rem 1rem;
       }
-    }  
+    }
   }
 } 

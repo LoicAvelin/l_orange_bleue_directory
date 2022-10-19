@@ -7,12 +7,14 @@ Evaluation en cours de formation pour l'école STUDI. Une grande salle de sport 
 * Accès à la page login
 
 ### Manager connecté :
-* Voir les informations de sa structure
-* Voir les permissions 
+* Voir ses informations personnelles
+* Voir les permissions globales
+* Voir les informations de sa structure et les permissions liées
 
 ### Partenaire connecté :
-* Voir les informations de sa (ses) structure(s)
-* Voir les permissions de sa (ses) structure(s)
+* Voir ses informations personnelles
+* Voir les permissions globales
+* Voir les informations de sa (ses) structure(s) et les permissions liées
 
 ### Equipe technique de la marque connecté (administrateur) :
 * Création :
@@ -22,6 +24,8 @@ Evaluation en cours de formation pour l'école STUDI. Une grande salle de sport 
         * Equipe technique
     * Structure
     * Permission
+    * Ajout d'une permission à un utilisateur
+    * Ajout d'une permission à une structure
 
 * Gestion : 
     * Utilisateur

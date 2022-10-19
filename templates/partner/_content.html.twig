@@ -1,0 +1,43 @@
+{% for user in users %}
+	<div>
+		<h2>Nom :
+			<span>{{ user.name }}</span>
+		</h2>
+		<h3>Type de compte :
+			{% if user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}Administrateur
+				{% elseif user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %}Partenaire
+				{% else %}Manager
+			{% endif %}
+		</h3>
+		<h3>Adresse mail :
+			{{ user.email }}</h3>
+		<p>Numéro de téléphone :
+			{{ user.phoneNumber }}</p>
+		<p>Date de création :
+			{{ user.createdAt | date("d-m-Y") }}</p>
+		<p>Actif :
+			{% if user.isActive == 1 %}Oui{% else %}Non
+			{% endif %}
+		</p>
+	</div>
+{% endfor %}
+
+{% for structure in structures %}
+	<div>
+		<h2>Nom :
+			<span>{{ structure.name }}</span></h2>
+		<h3>Adresse :
+			{{ structure.address }}</h3>
+		<p>Numéro de téléphone :
+			{{ structure.phoneNumber }}</p>
+		<p>Date de création :
+			{{ structure.createdAt | date("d-m-Y") }}</p>
+		<p>Actif :
+			{% if structure.isActive == 1 %}Oui{% else %}Non
+			{% endif %}
+		</p>
+	</div>
+{% endfor %}
+
+
+
