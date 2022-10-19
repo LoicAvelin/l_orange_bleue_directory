@@ -17,6 +17,9 @@ main .container__element--searchBar h3 {
 main .container__element--searchBar #filters {
   display: inline-block;
 }
+main .content {
+  margin: 1rem;
+}
 main .content div {
   background-color: #8BD8BD;
   border-radius: 1rem;

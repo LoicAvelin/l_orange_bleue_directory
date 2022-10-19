@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,5 +50,15 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException("This method can be blank - it will be intercepted by the logout key on your firewall.");
+    }
+    #[Route(path: "/CGU", name: "app_CGU")]
+    public function legalNotices(UsersRepository $repository): Response
+    {
+        $id = $this->getUser()->getId();
+        $user = $repository->find($id);
+
+        return $this->render("security/mentionsCGU.html.twig", [
+            "user" => $user
+        ]);
     }
 }
