@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% set queryParams = app.request.query.all %}
-{% set queryString = queryParams|filter((v, k) => k != "page")|url_encode %}
 
 {% block title %}{{ parent() }} - Recherche{% endblock %}
 
@@ -20,24 +19,38 @@
       <input type="text" name="user" id="userFilter" placeholder="Taper le nom de l'utilisateur">
       <h3>Filtres</h3>
       <form id="filters">
-        {# {% if queryParams is not empty and queryParams.activeUser is not empty %}
-          {% set checked = (true in queryParams.activeUser) ? "checked" : "" %}
-        {% else %}
-          {% set checked = "" %}
-        {% endif %} #}
-        <p><input type="checkbox" name="activeUser" id="activeUser" value="true" {# {{checked}} #}>
+
+        {% set checkedAU= "" %}
+        {% set checkedIU= "" %}
+        {% set checkedP= "" %}
+        {% set checkedM= "" %}
+        {% set checkedAS= "" %}
+        {% set checkedIS= "" %}
+        {% set checkedS= "" %}
+
+        {% if queryParams is not empty %}
+          {% set checkedAU = (queryParams.activeUser|default("0")) ? "checked" : "" %}
+          {% set checkedIU = (queryParams.inactiveUser|default("0")) ? "checked" : "" %}
+          {% set checkedP = (queryParams.partner|default("0")) ? "checked" : "" %}
+          {% set checkedM = (queryParams.manager|default("0")) ? "checked" : "" %}
+          {% set checkedAS = (queryParams.activeStructure|default("0")) ? "checked" : "" %}
+          {% set checkedIS = (queryParams.inactiveStructure|default("0")) ? "checked" : "" %}
+          {% set checkedS = (queryParams.structure|default("0")) ? "checked" : "" %}
+        {% endif %}
+
+        <p><input type="checkbox" name="activeUser" id="activeUser" value="true" {{checkedAU}}>
         <label for="activeUser">Utilisateur Actif</label></p>
-        <p><input type="checkbox" name="inactiveUser" id="inactiveUser" value="true">
+        <p><input type="checkbox" name="inactiveUser" id="inactiveUser" value="true" {{checkedIU}}>
         <label for="inactiveUser">Utilisateur Inactif</label></p>
-        <p><input type="checkbox" name="partner" id="partner" value="true">
+        <p><input type="checkbox" name="partner" id="partner" value="true" {{checkedP}}>
         <label for="partner">Partenaire</label></p>
-        <p><input type="checkbox" name="manager" id="manager" value="true">
+        <p><input type="checkbox" name="manager" id="manager" value="true" {{checkedM}}>
         <label for="manager">Manager</label></p>
-        <p><input type="checkbox" name="activeStructure" id="activeStructure" value="true">
+        <p><input type="checkbox" name="activeStructure" id="activeStructure" value="true" {{checkedAS}}>
         <label for="activeStructure">Structure Active</label></p>
-        <p><input type="checkbox" name="inactiveStructure" id="inactiveStructure" value="true">
+        <p><input type="checkbox" name="inactiveStructure" id="inactiveStructure" value="true" {{checkedIS}}>
         <label for="inactiveStructure">Structure Inactive</label></p>
-        <p><input type="checkbox" name="structure" id="structure">
+        <p><input type="checkbox" name="structure" id="structure" value="true" {{checkedS}}>
         <label for="structure">Structure</label></p>
         
       </form>
