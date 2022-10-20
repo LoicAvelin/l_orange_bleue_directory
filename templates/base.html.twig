@@ -48,7 +48,7 @@
           {% block research %}{% endblock %}
         </div>
         <div class="header__item--welcome">
-          <h1>{% block h1 %}Connexion{% endblock %}</h1>
+          <h1>{% block h1 %}{% endblock %}</h1>
         </div>
       {% endblock %}
     </header>
@@ -59,7 +59,7 @@
       {% block footer %}
         <div class="footer__item--home">
           {% block homeFooter %}{% endblock %}
-          <a href="/CGU">Mentions légales et conditions générales d'utilisation</a>
+          {% block CGU %}{% endblock %}
           {% block researchFooter %}{% endblock %}
         </div>
       {% endblock %}
