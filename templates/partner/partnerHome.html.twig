@@ -4,6 +4,9 @@
 {% block stylesheets %} 
   <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> 
 {% endblock %}
+{% block javascripts %} 
+  <script src="{{ asset('assets/js/validationMessage.js') }}" defer></script>
+{% endblock %}
 {% block home %} <a href="/logout">Déconnexion</a> {% endblock %}
 {% block research %} <a href="/manager/searchable/">Recherche</a> {% endblock %}
 {% block h1 %}Bienvenue {{ user.name }}{% endblock %}
@@ -36,9 +39,9 @@
       </p>
       <div>
         {% if permission.isActive == 1 %}
-          <a href="{{ path('disable_permission_partner', {idPermission : permission.Permissions.id}) }}" class="main__div--button">Désactiver</a>
+          <a onclick="return disableConfirm()" href="{{ path('disable_permission_partner', {idPermission : permission.Permissions.id}) }}" class="main__div--button">Désactiver</a>
         {% else %}
-          <a href="{{ path('enable_permission_partner', {idPermission : permission.Permissions.id }) }}"  class="main__div--button">Activer</a>
+          <a onclick="return enableConfirm()" href="{{ path('enable_permission_partner', {idPermission : permission.Permissions.id }) }}"  class="main__div--button">Activer</a>
         {% endif %}
       </div>
     {% endfor %}
@@ -62,9 +65,9 @@
       </p>
       <div>
       {% if structure.isActive == 1 %}
-        <a href="{{ path('disable_structure_partner', {idStructure : structure.id}) }}" class="main__div--button">Désactiver</a>
+        <a onclick="return disableConfirm()" href="{{ path('disable_structure_partner', {idStructure : structure.id}) }}" class="main__div--button">Désactiver</a>
       {% else %}
-        <a href="{{ path('enable_structure_partner', {idStructure : structure.id}) }}" class="main__div--button">Activer</a>
+        <a onclick="return enableConfirm()" href="{{ path('enable_structure_partner', {idStructure : structure.id}) }}" class="main__div--button">Activer</a>
       {% endif %}
       </div>
       <br>
@@ -77,9 +80,9 @@
         </p>
         <div>
           {% if permissionStructure.isActive == 1 %}
-            <a href="{{ path('disable_permission_structure_partner', {idPermission : permissionStructure.permissions.id, idStructure : structure.id}) }}" class="main__div--button">Désactiver</a>
+            <a onclick="return disableConfirm()" href="{{ path('disable_permission_structure_partner', {idPermission : permissionStructure.permissions.id, idStructure : structure.id}) }}" class="main__div--button">Désactiver</a>
           {% else %}
-            <a href="{{ path('enable_permission_structure_partner', {idPermission : permissionStructure.permissions.id, idStructure : structure.id}) }}"  class="main__div--button">Activer</a>
+            <a onclick="return enableConfirm()" href="{{ path('enable_permission_structure_partner', {idPermission : permissionStructure.permissions.id, idStructure : structure.id}) }}"  class="main__div--button">Activer</a>
           {% endif %}
         </div>
       {% endfor %}  

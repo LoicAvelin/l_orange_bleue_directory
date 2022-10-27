@@ -1,4 +1,4 @@
-# "API" Salle de sport - STUDI
+# Application web Salle de sport - STUDI
 
 ## Description du projet
 
