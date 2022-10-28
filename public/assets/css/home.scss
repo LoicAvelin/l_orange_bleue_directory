@@ -3,6 +3,28 @@ $second-color: #ffaf1b;
 $third-color: #8BD8BD;
 $four-color: #000000;
 
+@keyframes menuD1 {
+  0% {
+    opacity: 0;
+    height: 0rem;
+  }
+  100% {
+    opacity: 1;
+    height: 44rem;
+  }
+}
+
+@keyframes menuD2 {
+  0% {
+    opacity: 0;
+    height: 0rem;
+  }
+  100% {
+    opacity: 1;
+    height: 25rem;
+  }
+}
+
 .main__item--category {
   border: 0.3rem solid $first-color;
   border-radius: 0.3rem;
@@ -13,13 +35,23 @@ $four-color: #000000;
     font-family: 'Pacifico', cursive;
     font-size: 2.6rem;
     text-align: center;
+
+    &:hover {
+      cursor: s-resize;
+    }
   }
 
-  h2:hover {
-    cursor: s-resize;
+  #d1 {
+    animation-name: menuD1;
+    animation-duration: 1.2s;
+    animation-play-state: paused;
+    display: none;
   }
 
-  #d1, #d2 {
+  #d2 {
+    animation-name: menuD2;
+    animation-duration: 1s;
+    animation-play-state: paused;
     display: none;
   }
 }
