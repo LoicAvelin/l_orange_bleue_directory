@@ -18,6 +18,7 @@ class PermissionsStructuresType extends AbstractType
     {
         $builder
             ->add("structures", EntityType::class, [
+                "label" => "Structure",
                 "class" => Structures::class,
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -25,6 +26,7 @@ class PermissionsStructuresType extends AbstractType
                 },
             ])
             ->add("permissions", EntityType::class, [
+                "label" => "Permission",
                 "class" => Permissions::class,
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
