@@ -4,3 +4,7 @@ controllers:
 app_logout:
     path: /logout
     methods: GET
+login:
+    path: /
+    controller: App\Controller\SecurityController::login
+    schemes: [https]
