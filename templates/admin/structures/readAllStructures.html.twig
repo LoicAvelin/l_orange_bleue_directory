@@ -3,7 +3,7 @@
 {% set queryParams = app.request.query.all %}
 
 {% block title %}{{ parent() }} - Structures{% endblock %}
-
+{% block metaDescription %}<meta name="description" content="Vous êtes sur la page de gestion des structures. Vous avez accès à toutes les structures. Vous pouvez également faire une recherche dynamique afin de retrouver le nom de celle que vous cherchez. Ensuite, vous avez accès à des boutons afin de faire des modifications dessus.">{% endblock %}
 {% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/searchable.css') }}"> {% endblock %}
 {% block javascripts %} 
   <script src="{{ asset('assets/js/validationMessage.js') }}" defer></script>

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} - Permissions{% endblock %}
-
+{% block metaDescription %}<meta name="description" content="Vous êtes sur la page de gestion des permissions. Vous avez accès à toutes les permissions. Vous pouvez également faire une recherche dynamique afin de retrouver le nom de celle que vous cherchez. Ensuite, vous avez accès à des boutons afin de faire des modifications dessus.">{% endblock %}
 {% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/readItems.css') }}"> {% endblock %}
 {% block javascripts %} <script src="{{ asset('assets/js/validationMessage.js') }}" defer></script> {% endblock %}
 

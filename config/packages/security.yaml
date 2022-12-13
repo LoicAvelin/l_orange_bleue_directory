@@ -31,7 +31,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: app_login
+                # target: app_logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -45,6 +45,7 @@ security:
         - { path: ^/manager, roles: ROLE_MANAGER }
         - { path: ^/partner, roles: ROLE_PARTNER }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        #- { path: ^/logout, roles: ROLE_ADMIN }
 
 when@test:
     security:

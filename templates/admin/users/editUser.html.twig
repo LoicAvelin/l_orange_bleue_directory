@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} - Modification utilisateur{% endblock %}
-
+{% block metaDescription %}<meta name="description" content="Vous êtes sur la page de modification d'un utilisateur. Vous avez accès au formulaire de modification. Si vous souhaitez modifier quelque chose, alors vous êtes sur la bonne page.">{% endblock %}
 {% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/form.css') }}"> {% endblock %}
 {% block javascripts %} <script src="{{ asset('assets/js/formUser.js') }}" defer></script> {% endblock %}
 {% block home %}<a href="/admin">Accueil</a>{% endblock %}

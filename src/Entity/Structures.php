@@ -6,6 +6,7 @@ use App\Repository\StructuresRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StructuresRepository::class)]
 class Structures
@@ -16,9 +17,11 @@ class Structures
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Type("string")]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Type("string")]
     private ?string $address = null;
 
     #[ORM\Column(length: 20, nullable: true)]

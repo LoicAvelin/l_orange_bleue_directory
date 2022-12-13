@@ -3,7 +3,7 @@
 {% set queryParams = app.request.query.all %}
 
 {% block title %}{{ parent() }} - Utilisateurs{% endblock %}
-
+{% block metaDescription %}<meta name="description" content="Vous êtes sur la page de gestion des utilisateurs. Vous avez accès à tous les utilisateurs. Vous pouvez également faire une recherche dynamique afin de retrouver le nom de celui que vous cherchez. Ensuite, vous avez accès à des boutons afin de faire des modifications dessus.">{% endblock %}
 {% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/searchable.css') }}"> {% endblock %}
 {% block javascripts %} 
   <script src="{{ asset('assets/js/validationMessage.js') }}" defer></script>

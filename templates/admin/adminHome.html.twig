@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }}- Accueil admin{% endblock %}
-
+{% block metaDescription %}<meta name="description" content="Vous êtes sur la page d'accueil d'un administrateur. Vous avez accès à toute la gestion des données de cette application. Vous allez pouvoir créer, modifier et supprimer tout ce que vous souhaitez. C'est à partir de là que vous pourrez créer un nouvel utilisateur.">{% endblock %}
 {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
 {% endblock %}

@@ -47,9 +47,10 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: "/logout", name: "app_logout")]
-    public function logout(): Response
+    public function logout(): void
     {
-        return $this->render("security/logout.html.twig");
+        throw new \Exception('logout() should never be reached');
+        //return $this->render("security/logout.html.twig");
     }
 
     #[Route(path: "/CGU", name: "app_CGU")]

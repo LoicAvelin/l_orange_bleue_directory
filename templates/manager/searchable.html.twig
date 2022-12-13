@@ -3,7 +3,7 @@
 {% set queryParams = app.request.query.all %}
 
 {% block title %}{{ parent() }} - Recherche{% endblock %}
-
+{% block metaDescription %}<meta name="description" content="Vous êtes sur la page de recherche. Il s'agit d'une recherche dynamique, sans recharge de votre page. Cela est beaucoup plus rapide et vous permet en tapant les premières lettres que vous recherchez, de trouver le nom de la structure ou de la personne souhaitée.">{% endblock %}
 {% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/searchable.css') }}"> {% endblock %}
 {% block javascripts %} 
   <script src="{{ asset('assets/js/readItems.js') }}" defer></script>

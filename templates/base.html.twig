@@ -2,9 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>{% block title %}'orange bleue{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<!-- Meta tag for the responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{% block title %}'orange bleue{% endblock %}</title>
+    {% block metaDescription %}{% endblock %}
     <!-- START: Link tag for the favicon --> 
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/icons/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/images/icons/apple-icon-60x60.png') }}">
