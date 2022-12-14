@@ -8,7 +8,7 @@
 {% block javascripts %} 
   <script src="{{ asset('assets/js/validationMessage.js') }}" defer></script>
 {% endblock %}
-{% block home %} <a href="/logout">Déconnexion</a> {% endblock %}
+{% block home %} <a href=" {{ path('app_logout') }} ">Déconnexion</a> {% endblock %}
 {% block research %} <a href="/manager/searchable/">Recherche</a> {% endblock %}
 {% block h1 %}Bienvenue {{ user.name }}{% endblock %}
 
@@ -90,6 +90,6 @@
     </div>
   {% endfor %}
 {% endblock %}
-{% block homeFooter %}<a href="/logout">Déconnexion</a>{% endblock %}
+{% block homeFooter %}<a href=" {{ path('app_logout') }} ">Déconnexion</a>{% endblock %}
 {% block CGU %}<a href="/CGU">Mentions légales et CGU</a>{% endblock %}
 {% block researchFooter %}<a href="/manager/searchable/">Recherche</a>{% endblock %}

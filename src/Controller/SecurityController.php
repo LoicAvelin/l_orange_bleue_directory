@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: "/", name: "app_login")]
+    #[Route(path: "/", name: "app_login", schemes: ['https'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if (
@@ -46,11 +46,10 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/logout", name: "app_logout")]
+    #[Route(path: "/logout", name: "app_logout", methods: ['GET'])]
     public function logout(): void
     {
         throw new \Exception('logout() should never be reached');
-        //return $this->render("security/logout.html.twig");
     }
 
     #[Route(path: "/CGU", name: "app_CGU")]
