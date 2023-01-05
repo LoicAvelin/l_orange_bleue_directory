@@ -34,6 +34,10 @@ class SecurityController extends AbstractController
         ) {
             return $this->redirectToRoute("app_manager");
         }
+        elseif ($this->getUser() && $this->getUser()->isIsActive() == false) {
+            $notice = "Votre compte n'est pas actif";
+            return $this->redirectToRoute("app_logout", ["notice" => $notice]);
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -46,7 +50,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/logout", name: "app_logout", methods: ['GET'])]
+    #[Route(path: "/logout", name: "app_logout")]
     public function logout(): void
     {
         throw new \Exception('logout() should never be reached');

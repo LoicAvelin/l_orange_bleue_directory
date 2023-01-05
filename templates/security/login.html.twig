@@ -7,15 +7,14 @@
 {% block main %}
 <form action="{{ path('app_login') }}" method="post">
 <div>
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     {% if app.user %}
         <div>
-            Vous êtes connecté avec l'identifiant {{ app.user.userIdentifier }},  mais votre compte n'est pac actif. Veuillez contacter le service technique pour avoir plus d'informations à ce sujet. Nous vous remercions de votre compréhension. 
+            Vous êtes connecté avec l'identifiant {{ app.user }},  mais votre compte n'est pac actif. Veuillez contacter le service technique pour avoir plus d'informations à ce sujet. Nous vous remercions de votre compréhension. 
         </div>
         <br>
+    {% endif %}
+    {% if error %}
+        <div id="messageError">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <div>
         <label for="inputEmail">Email</label>

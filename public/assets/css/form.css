@@ -3,6 +3,10 @@ h1 {
   margin: 0rem;
 }
 
+#messageError {
+  color: rgb(242, 6, 6);
+}
+
 form {
   background-color: #8BD8BD;
   border-radius: 1rem;
