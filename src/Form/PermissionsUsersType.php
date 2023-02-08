@@ -18,7 +18,7 @@ class PermissionsUsersType extends AbstractType
     {
         $builder
             ->add("Users", EntityType::class, [
-                "label" => "Franchisé",
+                "label" => "Utilisateur",
                 "class" => Users::class,
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')

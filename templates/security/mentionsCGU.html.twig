@@ -8,16 +8,20 @@
     padding-top: 4rem;
     width: 100%; 
     background-attachment: fixed;
-    background-image: url({{ asset('assets/images/carousel03.jpg') }}); 
+    background-image: url({{ asset('assets/images/carousel04.jpg') }}); 
     background-size: cover; 
     background-position: center;
   "
 >
-{% include "manager/_header.html.twig" %}
+{% if user.roles != ['ROLE_ADMIN', 'ROLE_MANAGER']  %} 
+  {% include "manager/_header.html.twig" %}
+{% else %}
+  {% include "admin/_header.html.twig" %}
+{% endif %}
 {% block main %}
-<main class="container">
+<main class="container text-center">
 <h1 class="text-center m-4">Conditions générales d'utilisation</h1>
-<div class="bg-black bg-opacity-75 p-3">
+<div class="bg-black bg-opacity-50 p-3 rounded">
 <h3>1. Conditions générales d’utilisation du site et des services proposés.</h3>
 <h4>a. Description des services fournis</h4>
 <p>L’utilisation du site lorangebleue.fr implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites.
