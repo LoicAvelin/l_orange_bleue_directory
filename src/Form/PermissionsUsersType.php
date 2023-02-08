@@ -18,7 +18,7 @@ class PermissionsUsersType extends AbstractType
     {
         $builder
             ->add("Users", EntityType::class, [
-                "label" => "Utilisateur",
+                "label" => "Franchisé",
                 "class" => Users::class,
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -26,7 +26,7 @@ class PermissionsUsersType extends AbstractType
                 },
             ])
             ->add("Permissions", EntityType::class, [
-                "label" => "Permission",
+                "label" => "Module",
                 "class" => Permissions::class,
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
@@ -35,8 +35,11 @@ class PermissionsUsersType extends AbstractType
             ])
             ->add("Valider", SubmitType::class, [
                 "attr" => [
-                    "class" => "form__input--button",
-                    "onclick" => "return submitConfirm()"
+                    "class" => "form__input--button btn btn-outline-light",
+                    "onclick" => "return submitConfirmPermissionUser()"
+                ],
+                "row_attr" => [
+                    "class" => "text-center mb-3"
                 ]
             ])
         ;

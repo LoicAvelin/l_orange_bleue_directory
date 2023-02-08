@@ -4,31 +4,33 @@
 
 {% block title %}{{ parent() }} - Recherche{% endblock %}
 {% block metaDescription %}<meta name="description" content="Vous êtes sur la page de recherche. Il s'agit d'une recherche dynamique, sans recharge de votre page. Cela est beaucoup plus rapide et vous permet en tapant les premières lettres que vous recherchez, de trouver le nom de la structure ou de la personne souhaitée.">{% endblock %}
-{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/searchable.css') }}"> {% endblock %}
-{% block javascripts %} 
-  <script src="{{ asset('assets/js/readItems.js') }}" defer></script>
+{% block javascripts2 %} 
   <script src="{{ asset('assets/js/jQuery.js') }}" defer></script>
   <script src="{{ asset('assets/js/searchable.js') }}" defer></script>
 {% endblock %}
-{% block home %}
-    <a 
-      {% if user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %} 
-        href="/partner" 
-      {% elseif user.roles == ['ROLE_MANAGER'] %} 
-        href="/manager" 
-      {% elseif user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}
-        href="/admin"
-      {% endif %}
-    >Accueil</a>
-{% endblock %}
-{% block h1 %}Recherche utilisateur et structure{% endblock %}
-
+{% block body %}
+<body 
+  class="flex-column bg-black text-white" 
+  style="
+    padding-top: 4rem;
+    width: 100%; 
+    background-attachment: fixed;
+    background-image: url({{ asset('assets/images/research.jpg') }}); 
+    background-size: cover; 
+  "
+>
+{% include "manager/_header.html.twig" %}
 {% block main %}
-  <div class="container__element--searchBar">
-    <label for="">Chercher un utilisateur/structure</label>
-    <input type="text" name="user" id="userFilter" placeholder="Taper le nom de l'utilisateur">
-    <h3>Filtres</h3>
-    <form id="filters">
+<main>
+<h1 class="text-center m-4">Recherche</h1>
+  <div class="container__element--searchBar text-center container">
+    <div class="row justify-content-center mb-4">
+    <div class="bg-black bg-opacity-75" style="min-width: 7rem; max-width: 30rem;">
+    <div class="mb-3">
+      <label for=""><h5>Chercher un utilisateur, une salle de sport</h5></label>
+      <input type="text" name="user" id="userFilter" placeholder="Taper le nom de l'utilisateur">
+    </div>
+    <form class="row" id="filters">
 
       {% set checkedAU= "" %}
       {% set checkedIU= "" %}
@@ -47,37 +49,53 @@
         {% set checkedIS = (queryParams.inactiveStructure|default("0")) ? "checked" : "" %}
         {% set checkedS = (queryParams.structure|default("0")) ? "checked" : "" %}
       {% endif %}
-
-      <p><input type="checkbox" name="activeUser" id="activeUser" value="true" {{checkedAU}}>
-      <label for="activeUser">Utilisateur Actif</label></p>
-      <p><input type="checkbox" name="inactiveUser" id="inactiveUser" value="true" {{checkedIU}}>
-      <label for="inactiveUser">Utilisateur Inactif</label></p>
-      <p><input type="checkbox" name="partner" id="partner" value="true" {{checkedP}}>
-      <label for="partner">Partenaire</label></p>
-      <p><input type="checkbox" name="manager" id="manager" value="true" {{checkedM}}>
-      <label for="manager">Manager</label></p>
-      <p><input type="checkbox" name="activeStructure" id="activeStructure" value="true" {{checkedAS}}>
-      <label for="activeStructure">Structure Active</label></p>
-      <p><input type="checkbox" name="inactiveStructure" id="inactiveStructure" value="true" {{checkedIS}}>
-      <label for="inactiveStructure">Structure Inactive</label></p>
-      <p><input type="checkbox" name="structure" id="structure" value="true" {{checkedS}}>
-      <label for="structure">Structure</label></p>
-        
+      <div class="col-lg-6 col-12 mb-3">
+      <h5>Filtres utilisateurs</h5>
+      <div class="col border">
+      <div class="m-3">
+        <input type="checkbox" name="activeUser" id="activeUser" value="true" {{checkedAU}}>
+        <label for="activeUser">Utilisateur Actif</label>
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" name="inactiveUser" id="inactiveUser" value="true" {{checkedIU}}>
+        <label for="inactiveUser">Utilisateur Inactif</label>
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" name="partner" id="partner" value="true" {{checkedP}}>
+        <label for="partner">Partenaire</label>
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" name="manager" id="manager" value="true" {{checkedM}}>
+        <label for="manager">Manager</label>
+      </div>
+      </div>
+      </div>
+      <div class="col-lg-6 col-12 mb-3">
+      <h5>Filtres salles de sport</h5>
+      <div class="col border">
+      <div class="m-3">
+        <input type="checkbox" name="activeStructure" id="activeStructure" value="true" {{checkedAS}}>
+        <label for="activeStructure">Salle de sport active</label>
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" name="inactiveStructure" id="inactiveStructure" value="true" {{checkedIS}}>
+        <label for="inactiveStructure">Salle de sport inactive</label>
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" name="structure" id="structure" value="true" {{checkedS}}>
+        <label for="structure">Salle de sport</label>
+      </div>
+      </div>
+      </div>
     </form>
+    </div>
   </div>
-  <div class="content" id="filter">
+  </div>
+  <div class="container content row row-col-sm-3 row-col-1 g-4" id="filter">
     {% include "manager/_content.html.twig" %}
   </div>
+</main>
 {% endblock %}
-{% block homeFooter %}
-  <a 
-    {% if user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %} 
-      href="/partner" 
-    {% elseif user.roles == ['ROLE_MANAGER'] %} 
-      href="/manager" 
-    {% elseif user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}
-      href="/admin"
-    {% endif %}
-  >Accueil</a>
+{% include "admin/_footer.html.twig" %}
+</body>
 {% endblock %}
-{% block CGU %}<a href="/CGU">Mentions légales et CGU</a>{% endblock %}

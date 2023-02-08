@@ -137,7 +137,7 @@ class UsersController extends AbstractController
   #[Route("/admin/user/read-all", name: "read_all_user")]
   public function readAll(ManagerRegistry $doctrine, Request $request): Response
   {
-    // RECOVER ALL FILTERS
+    // On récupère les filtres
     $filterActiveUser = $request->get("activeUser");
     $filterInactiveUser = $request->get("inactiveUser");
     $filterPartner = $request->get("partner");
@@ -161,6 +161,7 @@ class UsersController extends AbstractController
       $users = $repositoryUser->findAll();
   }
 
+  // On vérifie si on a une requête ajax
   if ($request->get("ajax")){
     return new JsonResponse([
         "content" => $this->renderView("admin/users/_content.html.twig", [

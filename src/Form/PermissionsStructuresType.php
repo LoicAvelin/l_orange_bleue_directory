@@ -18,7 +18,7 @@ class PermissionsStructuresType extends AbstractType
     {
         $builder
             ->add("structures", EntityType::class, [
-                "label" => "Structure",
+                "label" => "Salle de sport",
                 "class" => Structures::class,
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -26,7 +26,7 @@ class PermissionsStructuresType extends AbstractType
                 },
             ])
             ->add("permissions", EntityType::class, [
-                "label" => "Permission",
+                "label" => "Module",
                 "class" => Permissions::class,
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
@@ -35,8 +35,11 @@ class PermissionsStructuresType extends AbstractType
             ])
             ->add("Valider", SubmitType::class, [
                 "attr" => [
-                    "class" => "form__input--button",
-                    "onclick" => "return submitConfirm()"
+                    "class" => "form__input--button btn btn-outline-light",
+                    "onclick" => "return submitConfirmPermissionStructure()"
+                ],
+                "row_attr" => [
+                    "class" => "text-center mb-3"
                 ]
             ])
         ;

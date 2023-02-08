@@ -1,31 +1,39 @@
 {% for user in users %}
-    <div>
-      <h2>Nom : <span>{{ user.name }}</span></h2>
-      <h3>Type de compte :
+<div class="col">
+  <div class="card mb-3 text-center h-100 bg-black bg-opacity-75 border-dark" style="min-width: 20rem; max-width: 20rem;">
+    <div class="card-header">
+      <h2 class="card-title"><i class="bi bi-person-fill"></i> | <span>{{ user.name }}</span></h2>
+    </div>
+    <div class="card-body">
+      <p><i class="bi bi-person-badge-fill"></i> |
         {% if user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}Administrateur
         {% elseif user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %}Partenaire
         {% else %}Manager
         {% endif %}
-      </h3>
-      <h3>Adresse mail : {{ user.email }}</h3>
-      <p>Numéro de téléphone : {{ user.phoneNumber }}</p>
-      <p>Date de création : {{ user.createdAt | date("d-m-Y") }}</p>
-      <p>Actif : 
+      </p>
+      <p><i class="bi bi-telephone-fill"></i> | {{ user.phoneNumber }}</p>
+      <p><i class="bi bi-envelope-at-fill"></i> | {{ user.email }}</p>
+      <p><i class="bi bi-calendar-plus-fill"></i> | {{ user.createdAt | date("d-m-Y") }}</p>
+      <p><i class="bi bi-activity"></i> | 
         {% if user.isActive == 1 %}Oui{% else %}Non
         {% endif %}
       </p>
-      <div>
-        <a onclick="return deleteConfirm()" href="{{ path('delete_user', {id : user.id}) }}" class="main__div--button">Supprimer</a>
+    </div>
+    <div class="card-body">
+      <div class="mb-2">
+        <a onclick="return deleteConfirm()" href="{{ path('delete_user', {id : user.id}) }}" class="main__div--button btn btn-outline-light">Supprimer</a>
       </div>
-      <div>
-        <a href="{{ path('edit_user', {id : user.id}) }}" class="main__div--button">Modifier</a>
+      <div class="mb-2">
+        <a href="{{ path('edit_user', {id : user.id}) }}" class="main__div--button btn btn-outline-light">Modifier</a>
       </div>
       <div>
       {% if user.isActive == 1 %}
-        <a onclick="return disableConfirm()" href="{{ path('disable_user', {id : user.id}) }}" class="main__div--button">Désactiver</a>
+        <a onclick="return disableConfirm()" href="{{ path('disable_user', {id : user.id}) }}" class="main__div--button btn btn-outline-light">Désactiver</a>
       {% else %}
-        <a onclick="return enableConfirm()" href="{{ path('enable_user', {id : user.id}) }}" class="main__div--button">Activer</a>
+        <a onclick="return enableConfirm()" href="{{ path('enable_user', {id : user.id}) }}" class="main__div--button btn btn-outline-light">Activer</a>
       {% endif %}
       </div>
-    </div>
-    {% endfor %}
+    </div>   
+  </div>
+</div>
+{% endfor %}

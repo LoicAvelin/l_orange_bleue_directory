@@ -2,20 +2,29 @@
 
 {% set queryParams = app.request.query.all %}
 
-{% block title %}{{ parent() }} - Structures{% endblock %}
+{% block title %}{{ parent() }} - Salles de sports{% endblock %}
 {% block metaDescription %}<meta name="description" content="Vous êtes sur la page de gestion des structures. Vous avez accès à toutes les structures. Vous pouvez également faire une recherche dynamique afin de retrouver le nom de celle que vous cherchez. Ensuite, vous avez accès à des boutons afin de faire des modifications dessus.">{% endblock %}
-{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/searchable.css') }}"> {% endblock %}
-{% block javascripts %} 
+{% block javascripts2 %} 
   <script src="{{ asset('assets/js/validationMessage.js') }}" defer></script>
   <script src="{{ asset('assets/js/jQuery.js') }}" defer></script>
-  <script src="{{ asset('assets/js/searchable.js') }}" defer></script> 
+  <script src="{{ asset('assets/js/searchable.js') }}" defer></script>
 {% endblock %}
-
-{% block home %}<a href="/admin">Accueil</a>{% endblock %}
-{% block h1 %}Structures{% endblock %}
-
+{% block body %}
+<body 
+  class="flex-column bg-black text-white"
+  style="
+    padding-top: 4rem;
+    width: 100%; 
+    background-attachment: fixed;
+    background-image: url({{ asset('assets/images/carousel06.jpg') }}); 
+    background-size: cover; 
+  "
+>
+{% include "admin/_header.html.twig" %}
 {% block main %}
-<div class="container__element--searchBar">
+<main>
+<h1 class="text-center m-4">Gérer les salles de sports</h1>
+<div class="container-fluid container__element--searchBar">
     <label for="">Chercher une structure</label>
     <input type="text" name="user" id="userFilter" placeholder="Taper le nom de la structure">
     <h3>Filtres</h3>
@@ -36,9 +45,11 @@
         
     </form>
   </div>
-  <div class="content" id="filter">
+  <div class="container content row row-cols-1 row-cols-md-3 g-4" id="filter">
     {% include "admin/structures/_content.html.twig" %}
   </div>
+</main>
 {% endblock %}
-{% block homeFooter %}<a href="/admin">Accueil</a>{% endblock %}
-{% block CGU %}<a href="/CGU">Mentions légales et CGU</a>{% endblock %}
+{% include "admin/_footer.html.twig" %}
+</body>
+{% endblock %}

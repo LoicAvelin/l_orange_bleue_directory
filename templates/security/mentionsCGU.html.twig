@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }} - CGU{% endblock %}
 {% block metaDescription %}<meta name="description" content="Ceux sont nos conditions générales d'utilisations de l'orange bleue. Vous trouverez ici le détail de l'utilisation de vos données, de la gestion de ce site, ainsi que toutes les informations relatives aux données sensibles.">{% endblock %}
-{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/cgu.css') }}"> {% endblock %}
-{% block home %}
-    <a 
-      {% if user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %} 
-        href="/partner" 
-      {% elseif user.roles == ['ROLE_MANAGER'] %} 
-        href="/manager" 
-      {% elseif user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}
-        href="/admin"
-      {% endif %}
-    >Accueil</a>
-{% endblock %}
-{% block h1 %}Conditions générales d'utilisation{% endblock %}
-
+{% block body %}
+<body 
+  class="flex-column bg-black text-white" 
+  style="
+    padding-top: 4rem;
+    width: 100%; 
+    background-attachment: fixed;
+    background-image: url({{ asset('assets/images/carousel03.jpg') }}); 
+    background-size: cover; 
+    background-position: center;
+  "
+>
+{% include "manager/_header.html.twig" %}
 {% block main %}
+<main class="container">
+<h1 class="text-center m-4">Conditions générales d'utilisation</h1>
+<div class="bg-black bg-opacity-75 p-3">
 <h3>1. Conditions générales d’utilisation du site et des services proposés.</h3>
 <h4>a. Description des services fournis</h4>
 <p>L’utilisation du site lorangebleue.fr implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites.
@@ -95,15 +97,9 @@ Leetchi Corp. S.A., société anonyme de droit luxembourgeois, au capital de 500
 Utilisateurs :
 <br>
 Les utilisateurs du site désignent les prospects, les adhérents, les partenaires licenciés, les salariés ainsi que toute personne pouvant avoir une utilisation commerciale ou informative du site à quelque titre que ce soit.</p>
+</div>
+</main>
 {% endblock %}
-{% block homeFooter %}
-  <a 
-    {% if user.roles == ['ROLE_PARTNER', 'ROLE_MANAGER'] %} 
-      href="/partner" 
-    {% elseif user.roles == ['ROLE_MANAGER'] %} 
-      href="/manager" 
-    {% elseif user.roles == ['ROLE_ADMIN', 'ROLE_MANAGER'] %}
-      href="/admin"
-    {% endif %}
-  >Accueil</a>
+{% include "admin/_footer.html.twig" %}
+</body>
 {% endblock %}

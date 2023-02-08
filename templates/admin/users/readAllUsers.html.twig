@@ -4,16 +4,26 @@
 
 {% block title %}{{ parent() }} - Utilisateurs{% endblock %}
 {% block metaDescription %}<meta name="description" content="Vous êtes sur la page de gestion des utilisateurs. Vous avez accès à tous les utilisateurs. Vous pouvez également faire une recherche dynamique afin de retrouver le nom de celui que vous cherchez. Ensuite, vous avez accès à des boutons afin de faire des modifications dessus.">{% endblock %}
-{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/searchable.css') }}"> {% endblock %}
-{% block javascripts %} 
+{% block javascripts2 %} 
   <script src="{{ asset('assets/js/validationMessage.js') }}" defer></script>
   <script src="{{ asset('assets/js/jQuery.js') }}" defer></script>
   <script src="{{ asset('assets/js/searchable.js') }}" defer></script>
 {% endblock %}
-{% block home %}<a href="/admin">Accueil</a>{% endblock %}
-{% block h1 %}Utilisateurs{% endblock %}
-
+{% block body %}
+<body 
+  class="flex-column bg-black text-white"
+  style="
+    padding-top: 4rem;
+    width: 100%; 
+    background-attachment: fixed;
+    background-image: url({{ asset('assets/images/carousel08.jpg') }}); 
+    background-size: cover; 
+  "
+>
+{% include "admin/_header.html.twig" %}
 {% block main %}
+<main>
+<h1 class="m-4 text-center">Gérer les utilisateurs</h1>
   <div class="container__element--searchBar">
     <label for="">Chercher un utilisateur</label>
     <input type="text" name="user" id="userFilter" placeholder="Taper le nom de l'utilisateur">
@@ -47,9 +57,10 @@
         
     </form>
   </div>
-  <div class="content" id="filter">
+  <div class="container content row row-cols-1 row-cols-md-3 g-4" id="filter">
     {% include "admin/users/_content.html.twig" %}
   </div>
 {% endblock %}
-{% block homeFooter %}<a href="/admin">Accueil</a>{% endblock %}
-{% block CGU %}<a href="/CGU">Mentions légales et CGU</a>{% endblock %}
+{% include "admin/_footer.html.twig" %}
+</body>
+{% endblock %}

@@ -1,70 +1,35 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<!-- Meta tag for the responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{% block title %}'orange bleue{% endblock %}</title>
-    {% block metaDescription %}{% endblock %}
-    <!-- START: Link tag for the favicon --> 
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/icons/apple-icon-57x57.png') }}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/images/icons/apple-icon-60x60.png') }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/images/icons/apple-icon-72x72.png') }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/icons/apple-icon-76x76.png') }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/images/icons/apple-icon-114x114.png') }}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/images/icons/apple-icon-120x120.png') }}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/images/icons/apple-icon-144x144.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/images/icons/apple-icon-152x152.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/icons/apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('assets/images/icons/android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/icons/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/icons/favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/icons/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/images/icons/manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <!-- END: Link tag for the favicon --> 
-    <!-- START: Link tag for the font google Noto sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- END: Link tag for the font google Noto sans -->
-    <!-- START: Link tag for the font google Pacifico -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
-    <!-- END: Link tag for the font google Pacifico -->
-    <!-- Link tag for the stylesheet -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-    {% block stylesheets %}{% endblock %}
-    {% block javascripts %}{% endblock %}
-	</head>
-	<body>
-    <header>
-      {% block header %}
-        <div class="header__item--home">
-          {% block home %}{% endblock %}
-          {% block research %}{% endblock %}
-        </div>
-        <div class="header__item--welcome">
-          <h1>{% block h1 %}{% endblock %}</h1>
-        </div>
-      {% endblock %}
-    </header>
-    <main>
-      {% block main %}{% endblock %}
-    </main>
-    <footer>
-      {% block footer %}
-        <div class="footer__item--home">
-          {% block homeFooter %}{% endblock %}
-          {% block CGU %}{% endblock %}
-          {% block researchFooter %}{% endblock %}
-        </div>
-      {% endblock %}
-    </footer>
-	</body>
-	</html>
+<head>
+	<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Meta tag for the responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}L'orange bleue{% endblock %}</title>
+  {% block metaDescription %}{% endblock %}
+  <!-- START: Link tag for the favicon --> 
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/icons/orange0732.png') }}" class="rounded-circle">
+  <!-- END: Link tag for the favicon --> 
+  <!-- START: Link tag for the font google Noto sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- END: Link tag for the font google Noto sans -->
+  <!-- START: Link tag for the font google Pacifico -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <!-- END: Link tag for the font google Pacifico -->
+  <!-- Link tag for the stylesheet -->
+  {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+  {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+  {% block javascripts2 %}{% endblock %}
+</head>
+{% block body %}
+<body>
+  {% block header %}{% endblock %}
+  {% block main %}{% endblock %}
+  {% block footer %}{% endblock %}
+</body>
+{% endblock %}
+</html>
